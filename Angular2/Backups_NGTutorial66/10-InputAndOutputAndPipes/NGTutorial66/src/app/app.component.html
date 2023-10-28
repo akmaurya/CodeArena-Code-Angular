@@ -1,0 +1,57 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome in {{ title }}!
+  </h1>
+  <img width="30" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+</div>
+<h2 style="color:green;" align="center">This is a first View of angular2 By Arvind </h2>
+
+<hr>
+  <table>
+
+      <tr>
+          <td>
+            <div class="classstylebind" style="background-color: #52a367;">
+                <h2>Input and Output</h2>
+                <h4>Parent App Component (app.component.ts)</h4>
+                <div class="tab">
+                    Enter Parent AppComponent Value : <input type="text" #ptext (keyup)="0">
+                    <p>Content from Child Component : {{childData}}</p>
+                </div>
+              <childcomponent [parentData]="ptext.value" (childEvent)="childData=$event"></childcomponent>
+            </div>
+          </td>
+
+          <td>
+              <div class="classstylebind" style="background-color: #747df8;">
+                <directivecomponent></directivecomponent>
+              </div>
+            </td>
+        </tr>
+    <tr>
+      <td>
+        <div class="classstylebind" style="background-color: #747df8;">
+          <classstylebind></classstylebind>
+        </div>
+      </td>
+
+      <td>
+          <div style="background-color: rgb(235, 110, 110);">
+            <h1>Hello World from App Component</h1>
+            <h4>Header 4 from App Component</h4>
+          </div>
+
+          <div style="background-color: rgb(123, 219, 231);">
+              <my-tutorials></my-tutorials>
+          </div>
+
+          <div style="background-color: rgb(150, 150, 240);">
+              <my-data></my-data>
+          </div>
+        </td>
+    </tr>
+    <tr>
+      
+    </tr>
+  </table>

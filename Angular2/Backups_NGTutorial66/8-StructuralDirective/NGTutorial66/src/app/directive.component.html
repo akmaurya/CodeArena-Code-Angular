@@ -1,0 +1,20 @@
+<h3>This is {{title}}</h3>
+<h4>Ex. of ngIf</h4>
+<div class="tab">
+    <p *ngIf="showElement">Show Element</p>
+
+</div>
+<h4>Ex. of ngSwitch</h4>
+<div class="tab" [ngSwitch]="color">
+        <p *ngSwitchCase="'red'">Red color is shown</p>
+        <p *ngSwitchCase="'blue'">Blue color is shown</p>
+        <p *ngSwitchDefault>Invalid color</p>
+</div>
+<h4>Ex. of ngFor</h4>
+<div class="tab">
+    Color List
+    <ul>
+        <li *ngFor='let color of colors'>{{color}}</li>
+    </ul>    
+</div>
+    

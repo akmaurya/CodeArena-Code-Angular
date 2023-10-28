@@ -1,0 +1,19 @@
+<h2>{{title}}</h2>
+
+<!--Two way binding in this div-->
+<div style="background-color: #eee111;">
+    <h3>Two Way binding:</h3>
+    <input type="text" [(ngModel)] = "fname"/>
+    <input type="text" [(ngModel)] = "lname"/>   
+    Full Name : {{fname}} {{lname}}
+</div>
+
+<div [class.myClass]="applyclass">This is class binding</div>
+<div [style.color]="applyred? 'red':'yellow'">This is style binding</div>
+
+<div style="background-color: rgb(78, 207, 207);">
+    <h3>Event Binding</h3>
+    <button (click)="onClick(demoInput.value)">Click Me</button>
+    <input type = "text" #demoInput>
+    <button (click)="onEvent($event)">Event Me</button>
+</div>

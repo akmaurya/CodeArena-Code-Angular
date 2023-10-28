@@ -1,0 +1,10 @@
+.firstDiv{
+    background-color: #ffb3b3;
+  }
+
+
+div.classstylebind {
+    width:620px;
+    margin: auto;
+    border: 3px solid #73AD21;
+}

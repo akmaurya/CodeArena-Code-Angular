@@ -1,0 +1,16 @@
+<h2 hidden>Input and Output</h2>
+
+<h4>Child Component (child.component.ts)</h4>
+<div class="tab">
+        Enter Child Component Value <input type="text" #childtext (keyup)="onChange(childtext.value)">
+        <p>Content from Parent App Component : {{parentData}}</p>
+</div>
+
+<h4>Use of Pipes with date</h4>
+<div class="tab">
+        <h3>{{date}}</h3>
+        <h3>{{date | date:'fullDate'}}</h3>
+        <h3>{{date | date:'shortDate'}}</h3>
+        <h3>{{date | date:'mediumTime'}}</h3>
+        <h3>{{date | date:'shortTime'}}</h3>
+</div>

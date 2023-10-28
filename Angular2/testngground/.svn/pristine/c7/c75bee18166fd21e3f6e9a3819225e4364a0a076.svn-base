@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "name": "Arvind",
+        "gender": "Male",
+        "salary": "22k"
+    },
+    {
+        "id": 2,
+        "name": "Sanjay",
+        "gender": "Male",
+        "salary": "60k"
+    }, 
+    {
+        "id": 3,
+        "name": "Pragati",
+        "gender": "Female",
+        "salary": "22k"
+    },
+    {
+        "id": 4,
+        "name": "Alok",
+        "gender": "Male",
+        "salary": "30k"
+    },
+    {
+        "id": 5,
+        "name": "Harvansh",
+        "gender": "Male",
+        "salary": "12k"
+    },
+    {
+        "id": 6,
+        "name": "Pramod",
+        "gender": "Male",
+        "salary": "98k"
+    }
+]

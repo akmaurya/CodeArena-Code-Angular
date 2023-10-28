@@ -1,0 +1,10 @@
+<h2>Employee List</h2>
+    <h3>{{errorMsg}}</h3>
+<table border="2px">
+    <tr>
+        <th>Id</th><th>Name</th>
+    </tr>
+    <tr *ngFor="let employee of employees">
+        <td>{{employee.id}}</td><td>{{employee.name}}</td>
+    </tr>
+</table>  
