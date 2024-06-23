@@ -1,0 +1,57 @@
+<div class="row">
+    <div class="col-md-3">
+        <button class="btn btn-success" (click)="getAllCustomer()">Get All Customer</button>
+        <button class="btn btn-success" (click)="addCustomer()">Add Customer</button>
+    </div>
+</div>
+<div class="col-md-4 border" *ngIf="isAddCustomer" >
+    <h3>Add Customer</h3>
+    <div *ngIf="addMessage">
+        {{addMessage}}.
+    </div>
+    <table class="table">
+        <tbody>
+            <tr>
+                <td>Customer License Number</td><td><input type="text" [(ngModel)]="customerLicenseNumber" name="" width="200px" class="form-control" placeholder="customer License Number"></td>
+                </tr>
+            <tr>
+                <td>Customer Name</td><td><input type="text"  [(ngModel)]="customerName" name="" width="200px" class="form-control" placeholder="Customer Name"></td>
+            </tr>
+            <tr>
+                <td>Customer Age</td><td><input type="text"  [(ngModel)]="customerAge" name="" width="200px" class="form-control" placeholder="Customer Age"></td>
+            </tr>
+            <tr>
+                <td>National ID Number</td><td><input type="text"  [(ngModel)]="nationalIDNumber" name="" width="200px" class="form-control" placeholder="National ID Number"></td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="btn btn-success" (click)="add()">Save Details</button>
+</div>
+
+
+<div *ngIf="allCustomers && !isAddCustomer">
+     <div class="row">
+     <div class="col-md-8">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <td>Sr. No.</td>
+                    <td>License Number</td>
+                    <td>Customer Name</td>
+                    <td>Customer Age</td>
+                    <td>National ID Number</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let prod of allCustomers; index as i">
+                    <td>{{i+1}}</td>
+                    <td>{{prod.licenseNumber}}</td>
+                    <td>{{prod.customerName}}</td>
+                    <td>{{prod.customerAge}}</td>
+                    <td>{{prod.nationalIDNumber}}</td>
+                    
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

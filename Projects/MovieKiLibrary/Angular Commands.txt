@@ -1,0 +1,55 @@
+ng new <project-name>: Creates a new Angular project.
+ng serve -o: Builds and serves your application, rebuilding on file changes.
+ng build: Compiles the application into an output directory.
+
+
+ng generate component <name> or ng g c <name>: Generates a new component.
+ng generate directive <name> or ng g d <name>: Generates a new directive.
+ng generate pipe <name> or ng g p <name>: Generates a new pipe.
+ng generate service <name> or ng g s <name>: Generates a new service.
+ng generate module <name> or ng g m <name>: Generates a new module.
+
+
+Enable BootStrap
+npm install bootstrap
+    Add Bootstrap CSS to your angular.json file:
+    "styles": [
+        "node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "src/styles.css"
+    ],
+    "scripts": [
+        "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+    ]
+
+
+    Alternatively, you can import Bootstrap in your global styles file (e.g., styles.scss or styles.css):
+    @import "~bootstrap/dist/css/bootstrap.min.css";
+
+
+    Common Bootstrap Classes
+    Bootstrap provides a wide array of classes for styling your HTML elements. Here are some of the most commonly used ones:
+
+    Grid System
+    .container, .container-fluid
+    .row
+    .col, .col-sm, .col-md, .col-lg, .col-xl
+    Typography
+    .text-left, .text-center, .text-right
+    .font-weight-bold, .font-weight-normal, .font-weight-light
+    .text-primary, .text-secondary, .text-success, .text-danger, .text-warning, .text-info, .text-light, .text-dark, .text-muted, .text-white
+    Buttons
+    .btn, .btn-primary, .btn-secondary, .btn-success, .btn-danger, .btn-warning, .btn-info, .btn-light, .btn-dark
+    .btn-lg, .btn-sm
+    Forms
+    .form-group
+    .form-control
+    .form-check, .form-check-input, .form-check-label
+    Navigation
+    .navbar, .navbar-brand, .navbar-nav, .nav-item, .nav-link
+    .navbar-expand-lg, .navbar-light, .navbar-dark, .bg-primary, .bg-secondary, .bg-success, .bg-danger, .bg-warning, .bg-info, .bg-light, .bg-dark
+    Utilities
+    .d-flex, .d-block, .d-inline-block
+    .align-items-start, .align-items-center, .align-items-end
+    .justify-content-start, .justify-content-center, .justify-content-end
+    .m-0, .m-1, .m-2, .m-3, .m-4, .m-5
+    .p-0, .p-1, .p-2, .p-3, .p-4, .p-5

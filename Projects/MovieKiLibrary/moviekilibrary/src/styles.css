@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+.body {
+    font-family: Arial, sans-serif;
+    background-color: #4b85c0;
+    
+    background-image: linear-gradient(rgba(47, 23, 15, 0.65), rgba(47, 23, 15, 0.65)), url("../src/assets/img/bg.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;  
+}
+
+.title-logo {
+    height: 50px; /* Adjust the height as needed */
+    width: auto;
+  }

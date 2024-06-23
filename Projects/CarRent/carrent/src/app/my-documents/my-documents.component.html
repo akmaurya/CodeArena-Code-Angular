@@ -1,0 +1,58 @@
+<p>my-documents works!</p>
+
+<div style="width: 500px;">
+    
+
+<mat-accordion *ngFor="let user of users">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>{{ user.name }}</mat-panel-title>
+      </mat-expansion-panel-header>
+      <div>
+        <p>Date of Birth: {{ user.dob }}</p>
+        <p>Gender: {{ user.gender }}</p>
+        <p>Contact No: {{ user.contactNo }}</p>
+      </div>
+  
+      <mat-accordion *ngFor="let document of user.documents">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Document ID: {{ document.id }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+  
+          <div *ngIf="document.documentName">Document Name: {{ document.documentName }}</div>
+  
+          <mat-accordion *ngFor="let info of document.informations">
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{ info.infoName }}: {{ info.infoData }}
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+  
+              <div *ngIf="hasSubInfo(info)">
+                <mat-accordion *ngFor="let subInfo of info.subInfo">
+                  <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        {{ subInfo.subInfoName }}: {{ subInfo.subInfoData }}
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                  </mat-expansion-panel>
+                </mat-accordion>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-expansion-panel>
+  </mat-accordion>
+  
+</div>
+<div *ngIf="data">
+    <h2>Data from API:</h2>
+    <pre>{{ data | json }}</pre>
+</div>
+

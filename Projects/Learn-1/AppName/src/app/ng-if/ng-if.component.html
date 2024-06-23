@@ -1,0 +1,15 @@
+<p>ng-if works!</p>
+<div>
+    <button class="btn btn-success" (click)="onClicked()">Creste Block</button>
+    <br><br>
+    <div *ngIf="isTrue">Block has been created</div>
+</div>
+
+<div>
+    <button class="btn btn-success" (click)="onClicked2()">Creste Block</button>
+    <br><br>
+    <div *ngIf="isTrue2; else elseBlock">Block has been created</div>
+    <ng-template #elseBlock>
+        <div>No Block has been created</div>
+    </ng-template>
+</div>

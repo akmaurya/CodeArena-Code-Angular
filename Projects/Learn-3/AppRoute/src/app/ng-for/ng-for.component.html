@@ -1,0 +1,35 @@
+<p>ng-for works!</p>
+<div class="row">
+    <div class="col-md-5">
+        <input type="text" [(ngModel)]="inputValue" name="" width="200px" class="form-control" #uname placeholder="User Name">
+    </div>
+    <div class="col-md-4">
+        <button class="btn btn-success" (click)="onCreateUser()">Create User</button>
+    </div>
+    <div class="col-md-3">
+        <button class="btn btn-danger" (click)="onRemoveUser()">Remove User</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-10">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>User Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users;index as i">
+                    <td>
+                        {{i+1+"-"+user}}
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" (click)="remove(i)">Remove</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

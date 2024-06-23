@@ -1,0 +1,108 @@
+<div class="row">
+    <div class="col-md-3">
+        <button class="btn btn-success" (click)="getAllCars()">Get All Cars</button>
+        <button class="btn btn-success" (click)="getAvailableCars()">Get Available Cars</button>
+    </div>
+    <div class="col-md-1">
+        Enter Brand 
+    </div>
+    <div class="col-md-2"><input type="text" [(ngModel)]="selectedBrand" style="width: 200px;" class="form-control">
+    </div>
+    <div class="col-md-2">
+        <button class="btn btn-success" (click)="getCarsByBrand()">Get Car by Brand</button>
+    </div>
+</div>
+<div *ngIf="allCars || allAvailableCars || carByBrand">
+    <!-- <pre>{{ data | json }}</pre> -->
+     <div class="row">
+     <div class="col-md-8">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <td>Sr. No.</td>
+                    <!-- <td>Plate No.</td> -->
+                    <td>Car Name</td>
+                    <td>Brand Name</td>
+                    <td>Price Per Day</td>
+                    <td>Color</td>
+                    <td *ngIf="allAvailableCars">Action</td>
+                    <td>Details</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let prod of allCars; index as i">
+                    <td>{{i+1}}</td>
+                    <!-- <td>{{prod.plateNumber}}</td> -->
+                    <td>{{prod.name}}</td>
+                    <td>{{prod.brand}}</td>
+                    <td>{{prod.pricePerDay}}</td>
+                    <td style="background-color: {{prod.color}};">{{prod.color}}</td>
+                    <td ><button class="btn btn-danger" (click)="getDetail1(i)">Details</button></td>
+                </tr>
+                <tr *ngFor="let prod of allAvailableCars; index as i">
+                    <td>{{i+1}}</td>
+                    <!-- <td>{{prod.plateNumber}}</td> -->
+                    <td>{{prod.name}}</td>
+                    <td>{{prod.brand}}</td>
+                    <td>{{prod.pricePerDay}}</td>
+                    <td style="background-color: {{prod.color}};">{{prod.color}}</td>
+                    <td ><button class="btn btn-success" (click)="rentCarForm(i)">Rent It</button></td>
+                    <td ><button class="btn btn-danger" (click)="getDetail2(i)">Details</button></td>
+                </tr>
+                <tr *ngFor="let prod of carByBrand; index as i">
+                    <td>{{i+1}}</td>
+                    <!-- <td>{{prod.plateNumber}}</td> -->
+                    <td>{{prod.name}}</td>
+                    <td>{{prod.brand}}</td>
+                    <td>{{prod.pricePerDay}}</td>
+                    <td style="background-color: {{prod.color}};">{{prod.color}}</td>
+                    <td ><button class="btn btn-success" (click)="rentCarForm(i)">Rent It</button></td>
+                    <td ><button class="btn btn-danger" (click)="getDetail3(i)">Details</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-4 border" *ngIf="aCarDetails">
+        <h3>Car Details</h3>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td>Plate Number</td><td>{{aCarDetails.plateNumber}}</td>
+                </tr>
+                <tr>
+                    <td>Name</td><td>{{aCarDetails.name}}</td>
+                </tr>
+                <tr>
+                    <td>Brand</td><td>{{aCarDetails.brand}}</td>
+                </tr>
+                <tr>
+                    <td>Price Per Day</td><td>{{aCarDetails.pricePerDay}}</td>
+                </tr>
+                <tr>
+                    <td>Cost Price</td><td>{{aCarDetails.costPrice}}</td>
+                </tr>
+                <tr>
+                    <td>Color</td><td>{{aCarDetails.color}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-4 border" *ngIf="isRentCarForm" >
+        <h3>Rent Form</h3>
+        <div *ngIf="bookedMessage">
+            Plate No. {{carPlateNumber}} {{bookedMessage}}.
+        </div>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td>Customer License Number</td><td><input type="text" [(ngModel)]="customerLicenseNumber" name="" width="200px" class="form-control" #uname placeholder="customerLicenseNumber"></td>
+                    </tr>
+                <tr>
+                    <td>Car Plate Number</td><td><input type="text" readonly [(ngModel)]="carPlateNumber" name="" width="200px" class="form-control" #uname placeholder="carPlateNumber"></td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="btn btn-success" (click)="bookNow()">Book Now</button>
+    </div>
+     </div>
+</div>

@@ -1,0 +1,67 @@
+.tile {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+.movie-item {
+    background-color: rgba(118, 37, 37, 0.6); /* Light brown background with 60% transparency */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    width: 290px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.movie-item:hover {
+    transform: scale(1.05);
+}
+
+.movie-header {
+    background-color: #f5c518; /* Gold color for header */
+    padding: 10px;
+    text-align: center;
+    color: #000000;
+}
+
+.movie-header h4 {
+    margin: 0;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.movie-image img {
+    width: 100%;
+    height: 180px;
+    border-bottom: 3px solid #d4af37; /* Gold color for image border */
+}
+
+.movie-details {
+    padding: 15px;
+    text-align: center;
+    font-size: 1em;
+}
+
+.movie-details p {
+    margin: 5px 0;
+    font-size: 1em;
+    color: #666;
+}
+
+.movie-details a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #1d6914; /* Gold color for button background */
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+    font-size: 1em;
+}
+
+.movie-details a:hover {
+    background-color: #f5c518; /* Darker gold color on hover */
+}

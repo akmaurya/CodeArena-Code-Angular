@@ -1,0 +1,31 @@
+<p>class-style-binding works!</p>
+<div class="box float1" [class.myclass]="true">
+    class Binding
+</div>
+
+<!-- This is class binding as property binding -->
+<div class="box float2" [class.myclass]="myprop"> 
+    This is class binding as property binding
+</div>
+
+<!-- This is style binding as property binding -->
+<div class="box float1" [style.margin]="mystyle"> 
+    This is style binding as property binding
+</div>
+
+<!-- This is class binding with ngClass-->
+<div class="box float2" [ngClass]="'mystyle class1 class2'"> 
+    This is class binding with ngClass
+</div>
+
+<!-- This is class binding with ngClass and method-->
+<div class="box float1" [ngClass]="mycustomClasses"> 
+    This is class binding with ngClass and method
+</div>
+
+<!-- This is style binding with ngClass and method-->
+<!-- <div class="box" [ngStyle]="{
+    'background:'red',
+    'border':'10px solid green'
+}"> class Binding using ng
+</div> -->

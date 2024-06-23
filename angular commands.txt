@@ -1,0 +1,5 @@
+npm i/npm install 	 to install npm in project.
+ng serve -o
+ng g s dataFetch	g generate, s service
+ng generate component myComponent
+ng new --no-standalone movielib		to create a angular project

@@ -1,0 +1,18 @@
+/* Define CSS styles for the heading */
+.attractive-heading {
+    font-family: "Arial", sans-serif;
+    font-size: 36px;
+    color: #3498DB; /* Blue text color */
+    text-shadow: 2px 2px 4px #2980B9; /* Text shadow for depth */
+    background: linear-gradient(45deg, #3498DB, #9B59B6); /* Gradient background */
+    -webkit-background-clip: text; /* Apply background to text only for webkit browsers */
+    background-clip: text;
+    display: inline; /* Make sure the background and text are inline */
+    transition: transform 0.2s; /* Add transition for smooth scaling */
+  }
+  
+  .attractive-heading:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Adjusted shadow on hover */
+  }
+  

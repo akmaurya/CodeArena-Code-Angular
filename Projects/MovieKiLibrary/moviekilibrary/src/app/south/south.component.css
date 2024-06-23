@@ -1,0 +1,9 @@
+#movie-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: rgba(121, 47, 28, 0.6); /* Brownish background */
+}

@@ -1,0 +1,17 @@
+ng new moviekilibrary --standalone false
+npm install bootstrap
+ng serve -o
+
+
+ng generate component home
+ng generate component bollywood
+ng generate component hollywood
+ng generate component south
+ng generate component bhojpuri
+ng generate component short-movie
+ng generate component three-d-movie
+ng generate component series
+
+ng generate component movie-tile
+
+ng build --prod

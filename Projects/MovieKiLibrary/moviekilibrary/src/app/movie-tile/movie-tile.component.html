@@ -1,0 +1,23 @@
+<!-- <p>movie-tile works!</p> -->
+<!-- <div class="tile">
+    <h2>{{ title }}</h2>
+    <p>{{ content }}</p>
+</div> -->
+<!-- 
+<div class="container">
+    <section id="movie-list"> -->
+        <!-- Movie listing goes here -->
+        <div class="movie-item">
+            <div class="movie-image">
+                <img [src]="movieData.Image" [alt]="movieData.Name">
+            </div>
+            <div class="movie-header">
+                <h4>{{movieData.Name}}</h4>
+            </div>
+            <div class="movie-details">
+                <a [href]="movieData.Link" class="download-link" download><ng-container *ngIf="movieData.Link=='link' else elseBlock">Will Upload Soon</ng-container><ng-template #elseBlock>Download {{movieData.Size}}</ng-template></a>
+            </div>
+        </div>           
+    <!-- </section> 
+</div> -->
+

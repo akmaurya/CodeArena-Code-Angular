@@ -1,0 +1,69 @@
+<p>product works!</p>
+<div class="pagearea">
+    <div class="text-center">
+        Products
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card" >
+                <img src="../../assets/imgs/mobile.jpeg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Mobile</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a routerLink="mobile" class="btn btn-success">Know More</a>
+                </div>
+            </div>
+            <div class="card" >
+                <img src="../../assets/imgs/laptop.jpeg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Laptop</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a routerLink="laptop" class="btn btn-success">Know More</a>
+                </div>
+            </div>
+            <div class="card" >
+                <img src="../../assets/imgs/washingmachine.jpeg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Washing Machine</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a routerLink="washingmachine" class="btn btn-success">Know More</a>
+                </div>
+            </div>
+            <div class="card" >
+                <img src="../../assets/imgs/TV.jpeg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">TV</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a routerLink="tv"  class="btn btn-success">Know More</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 border-left" >
+            <router-outlet></router-outlet>
+        </div>
+
+    </div>
+</div>
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <td>Sr. No.</td>
+        <td>Product Image</td>
+    <td>Product Name</td>
+<td>Product ID</td>
+<td>Product Price</td>
+</tr>
+</thead>
+<tbody>
+    <tr *ngFor="let prod of product; index as i">
+        <td>{{i+1}}</td>
+    <td><img width="70px" src="{{prod.prodimg}}"></td>
+<td>{{prod.name}}</td>
+<td>{{prod.id}}</td>
+<td>{{prod.price}}</td>
+</tr>
+</tbody>
+</table>

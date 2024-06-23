@@ -1,0 +1,28 @@
+/* Define CSS styles for the colorful list */
+.colorful-list {
+    list-style-type: none;
+    padding: 0;
+    width: 300px;
+  }
+
+  .colorful-list li {
+    padding: 15px;
+    margin: 10px 0;
+    color: #fff; /* White text */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
+    transition: transform 0.2s;
+  }
+
+  .colorful-list li:nth-child(odd) {
+    background: linear-gradient(45deg, #FF5733, #FFC300); /* Gradient background for odd items */
+  }
+
+  .colorful-list li:nth-child(even) {
+    background: linear-gradient(45deg, #3498DB, #9B59B6); /* Gradient background for even items */
+  }
+
+  .colorful-list li:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Adjusted shadow on hover */
+  }

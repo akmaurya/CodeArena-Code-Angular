@@ -1,0 +1,77 @@
+<nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+    <ul class="navbar-nav mx-auto">
+      <li class="nav-item px-lg-4" (click)="changeTab('bollywood')"><a class="nav-link text-uppercase" [class.active]="activeTab === 'bollywood'">Bollywood</a></li>
+      <li class="nav-item px-lg-4" (click)="changeTab('hollywood')"><a class="nav-link text-uppercase" [class.active]="activeTab === 'hollywood'">Hollywood</a></li>
+      <!-- Add more menu items for other tabs -->
+    </ul>
+  </nav>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Movie Ki Library</title>
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+    
+    <link href="./styles.css" rel="stylesheet" />
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3895842656957674"
+ crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <h1 class="site-heading text-center text-faded d-none d-lg-block">
+            <!-- <span class="site-heading-upper text-primary mb-3">Get all available movies for free.</span> -->
+            <span class="site-heading-lower">Movie Ki Library</span>
+        </h1>
+    </header>
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand text-uppercase fw-bold d-lg-none" href="index.html">Movie Ki Library</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="index.html">Home</a></li>
+                    <li class="nav-item px-lg-4" (click)="changeTab('bollywood')"><a class="nav-link text-uppercase" href="bollywood.html">Bollywood</a></li>
+                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="hollywood.html">Hollywood</a></li>
+                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="south.html">South</a></li>
+                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="bhojpuri.html">Bhojpuri</a></li>
+                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="shortmovie.html">Short Movies</a></li>
+                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="3dmovie.html">3D Movies</a></li>
+                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="series.html">Series</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section class="page-section clearfix">
+        <div  >
+            <h1 class="site-heading text-center text-faded d-none d-lg-block">
+                <span class="text-primary">Get all available movies for free.</span>
+            </h1>
+            <img style="width: 100%;" src="assets/img/moviesImage/MatrixPoster.jpg" alt="">
+        </div>
+    </section>
+    
+    <footer class="footer text-faded text-center py-5">
+        <div class="container"><p class="m-0 small">This Site has been visited [<span id="hitCount">0</span>] times. | Copyright &copy; www.moviekilibrary.com 2024</p></div>
+    </footer>
+
+<!-- movie-list.component.html -->
+<section class="page-section about-heading">
+    <div class="container">
+      <div id="movie-list">
+        <div *ngFor="let movie of moviesArray" class="movie-item">
+          <div class="movie-image">
+            <img [src]="movie.Image" [alt]="movie.Name">
+          </div>
+          <div class="movie-header">
+            <h4>{{ movie.Name }}</h4>
+          </div>
+          <div class="movie-details">
+            <a [href]="movie.Link" class="download-link" download>{{ getDownloadText(movie.Link) }} : {{ movie.Size }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
