@@ -14,6 +14,9 @@ import { SeriesComponent } from './series/series.component';
 import { MovieTileComponent } from './movie-tile/movie-tile.component';
 import { ReadJsonDataService } from './read-json-data.service';
 import { HttpClientModule } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @NgModule({
   declarations: [

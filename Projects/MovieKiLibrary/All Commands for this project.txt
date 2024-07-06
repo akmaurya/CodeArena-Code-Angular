@@ -15,3 +15,4 @@ ng generate component series
 ng generate component movie-tile
 
 ng build --prod
+ng build --configuration production

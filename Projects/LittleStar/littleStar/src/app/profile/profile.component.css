@@ -1,0 +1,11 @@
+/* src/app/profile/profile.component.css */
+
+.profile-container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .profile-container h2 {
+    margin-bottom: 20px;
+  }
+  

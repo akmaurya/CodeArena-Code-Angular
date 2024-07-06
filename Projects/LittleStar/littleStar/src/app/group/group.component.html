@@ -1,0 +1,8 @@
+<p>group works!</p>
+<div class="group-container">
+    <h2>Groups</h2>
+    <div *ngFor="let group of groups" class="group-item">
+      <a [routerLink]="['/group', group.id]">{{ group.name }}</a>
+    </div>
+  </div>
+  

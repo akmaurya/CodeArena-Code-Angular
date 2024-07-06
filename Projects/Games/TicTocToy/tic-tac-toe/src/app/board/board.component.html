@@ -1,0 +1,9 @@
+<div class="board">
+    <app-square *ngFor="let value of gameService.board; let idx = index"
+                [value]="value"
+                (click)="gameService.makeMove(idx)"></app-square>
+  </div>
+  <div *ngIf="gameService.winner" class="winner">
+    Winner: {{ gameService.winner }}
+  </div>
+  <button (click)="gameService.resetGame()">Restart</button>

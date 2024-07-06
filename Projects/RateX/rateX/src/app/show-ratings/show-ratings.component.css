@@ -1,0 +1,14 @@
+/* src/app/show-ratings/show-ratings.component.css */
+
+.rating-item {
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #ffffff;
+  }
+  
+  .rating-item h3 {
+    margin-top: 0;
+  }
+  

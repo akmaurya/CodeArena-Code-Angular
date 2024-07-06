@@ -1,0 +1,53 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* src/styles.css */
+
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    margin-top: 20px;
+  }
+  
+  /* Navigation bar styles */
+  .navbar {
+    margin-bottom: 20px;
+  }
+  
+  /* Form styles */
+  form {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  form label {
+    font-weight: bold;
+  }
+  
+  form input,
+  form textarea,
+  form button {
+    margin-top: 10px;
+  }
+  
+  /* Rating display styles */
+  .rating-item {
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #ffffff;
+  }
+  
+  .rating-item h3 {
+    margin-top: 0;
+  }
+  

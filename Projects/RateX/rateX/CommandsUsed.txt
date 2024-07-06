@@ -1,0 +1,3 @@
+ng new rateX --standalone false
+ng add @angular/material
+npm install @auth0/angular-jwt
