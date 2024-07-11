@@ -1,4 +1,5 @@
 <div class="container">
+    <div class="count"><h1>SOUTH-MOVIE Library [{{count}}]</h1></div>
     <section id="movie-list">
         <app-movie-tile *ngFor="let tile of tiles" [movieData]="tile"></app-movie-tile>
     </section>

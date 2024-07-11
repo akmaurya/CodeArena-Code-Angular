@@ -1,22 +1,5 @@
 [
-	{
-		"Size":"2.35 GB", 
-		"Image":"assets/img/moviesImage/bollywood/Dream Girl 2 [2023].jpg", 
-		"Link":"link", 
-		"Name":"Dream Girl 2 [2023]"
-	},
-	{
-		"Size":"2.82 GB", 
-		"Image":"assets/img/moviesImage/bollywood/Jawan [2023].jpg", 
-		"Link":"link", 
-		"Name":"Jawan [2023]"
-	},
-	{
-		"Size":"1.14 GB", 
-		"Image":"assets/img/moviesImage/bollywood/Omg 2 [2023].jpg", 
-		"Link":"link", 
-		"Name":"Omg 2 [2023]"
-	},
+
 	{
 		"Size":"441 MB", 
 		"Image":"assets/img/moviesImage/bollywood/Agneepath [2012].jpg", 
@@ -122,7 +105,7 @@
 	{
 		"Size":"517 MB", 
 		"Image":"assets/img/moviesImage/bollywood/Nadiya Ke Paar.jpg", 
-		"Link":"link", 
+		"Link":"https://1024terabox.com/s/1qJEpAgIC_gGgeGVhn2ETyw", 
 		"Name":"Nadiya Ke Paar"
 	},
 	{
@@ -142,12 +125,6 @@
 		"Image":"assets/img/moviesImage/bollywood/Padman [2018].jpg", 
 		"Link":"https://teraboxapp.com/s/17mvagn9AHQPcwnqnnpJiEQ", 
 		"Name":"Padman [2018]"
-	},
-	{
-		"Size":"1.04 GB", 
-		"Image":"assets/img/moviesImage/bollywood/Parmanu The Story Of Pokhran [2018].jpg", 
-		"Link":"link", 
-		"Name":"Parmanu The Story Of Pokhran [2018]"
 	},
 	{
 		"Size":"701 MB", 
@@ -322,5 +299,41 @@
 		"Image":"assets/img/moviesImage/bollywood/Yeh Dil Aashiqanaa [2002].jpg", 
 		"Link":"https://teraboxapp.com/s/1YU2KSOH5iSGm0FdrtYxx1Q", 
 		"Name":"Yeh Dil Aashiqanaa [2002]"
+	},
+	{
+		"Size":"4.42 GB", 
+		"Image":"assets/img/moviesImage/bollywood/Animal [2023].jpg", 
+		"Link":"https://1024terabox.com/s/1H5u34Lj1lzQfBUyKPgiOow", 
+		"Name":"Animal [2023]"
+	},
+	{
+		"Size":"1.33 GB", 
+		"Image":"assets/img/moviesImage/bollywood/Ghoomer 2023.jpg", 
+		"Link":"https://1024terabox.com/s/1ToW6RL9NA-6NsdPeAtOVZA", 
+		"Name":"Ghoomer 2023"
+	},
+	{
+		"Size":"429 MB", 
+		"Image":"assets/img/moviesImage/bollywood/Good News.jpg", 
+		"Link":"https://1024terabox.com/s/1GELvzpTQPqzNzOWr60Sc4g", 
+		"Name":"Good News"
+	},
+	{
+		"Size":"2.65 GB", 
+		"Image":"assets/img/moviesImage/bollywood/OMG 2 [2023].jpg", 
+		"Link":"https://1024terabox.com/s/15XNHM1aBnWTu4DOlreWFBQ", 
+		"Name":"OMG 2 [2023]"
+	},
+	{
+		"Size":"1.04 GB", 
+		"Image":"assets/img/moviesImage/bollywood/Parmanu The Story Of Pokhran [2018].jpg", 
+		"Link":"https://1024terabox.com/s/1w7MrALbf9bf-dXjw-O6wlQ", 
+		"Name":"Parmanu The Story Of Pokhran [2018]"
+	},
+	{
+		"Size":"2.68 GB", 
+		"Image":"assets/img/moviesImage/bollywood/Shaitaan 2024.jpg", 
+		"Link":"https://1024terabox.com/s/1ttJqL-9s9fCcXj1PklKLPw", 
+		"Name":"Shaitaan 2024"
 	}
 ]

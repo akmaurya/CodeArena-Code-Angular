@@ -11,7 +11,6 @@ export class ReadJsonDataService {
   constructor(private http: HttpClient) { }
 
   getTiles(jsonUrl:string): Observable<any> {
-    // alert("Service");
     return this.http.get(jsonUrl);
   }
 }

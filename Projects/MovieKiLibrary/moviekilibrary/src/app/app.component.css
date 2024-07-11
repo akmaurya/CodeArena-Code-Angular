@@ -548,3 +548,10 @@
     max-width: 1320px;
   }
 }
+
+.count {
+  font-size: 3rem;
+  font-weight: 500;
+  color: #f6f218;
+  /* line-height: 2rem; */
+}

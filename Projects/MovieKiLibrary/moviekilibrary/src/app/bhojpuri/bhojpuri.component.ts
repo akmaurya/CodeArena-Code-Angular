@@ -9,7 +9,7 @@ import { ReadJsonDataService } from '../read-json-data.service';
 export class BhojpuriComponent {
   private jsonDataPath:string='../assets/data/bhojpuri.json';
   tiles: any[] = [];
-
+  count: number=0;
   constructor(private dataService: ReadJsonDataService) { }
 
   ngOnInit(): void {
@@ -17,7 +17,12 @@ export class BhojpuriComponent {
   }
   getData(jsonDataPath: string){
     this.dataService.getTiles(jsonDataPath).subscribe(data => {
-      this.tiles = data;
+      this.tiles = this.sortData(data);
+      this.count = this.tiles.length;
     });
+  }
+
+  sortData(data: any[]): any[] {
+    return data.sort((a, b) => a.Name.localeCompare(b.Name)); // Sort alphabetically by Name
   }
 }

@@ -7,3 +7,10 @@
     border-radius: 20px;
     background-color: rgba(121, 47, 28, 0.6); /* Brownish background */
 }
+
+.count {
+    font-size: 3rem;
+    font-weight: 500;
+    color: #f6f218;
+    /* line-height: 2rem; */
+  }
