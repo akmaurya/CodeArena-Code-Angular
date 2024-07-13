@@ -1,0 +1,125 @@
+/* Container for main content and auth section */
+.main-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+/* Main content area - takes up 70% of the width */
+.content {
+    width: 70%;
+}
+
+/* Auth container - takes up 30% of the width */
+.auth-container {
+    width: 30%;
+    padding-left: 20px; /* Space between content and auth container */
+}
+
+/* Basic navigation styling */
+nav {
+    margin-bottom: 20px;
+}
+
+/* Unordered list styling */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: flex-end; /* Align items to the right */
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+}
+
+/* List item styling */
+nav ul li {
+    margin: 0 10px;
+}
+
+/* Link styling */
+nav ul li a {
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s, background-color 0.3s;
+    padding: 10px 20px;
+    border-radius: 4px;
+}
+
+/* Hover effect for links */
+nav ul li a:hover {
+    background-color: #45a049;
+    color: white;
+}
+
+/* Active link styling */
+nav ul li a.active {
+    background-color: #45a049;
+    color: white;
+}
+
+/* Animation for nav appearance */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+nav {
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Router outlet container */
+/* router-outlet {
+    display: block;
+    padding: 20px;
+    background: #5bd6ff;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+} */
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .main-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .content {
+        width: 100%;
+    }
+
+    .auth-container {
+        width: 100%;
+        padding-left: 0;
+    }
+
+    nav ul {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    nav ul li {
+        margin: 10px 5px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-container {
+        padding: 10px;
+    }
+
+    nav ul li a {
+        padding: 8px 16px;
+    }
+
+    router-outlet {
+        padding: 10px;
+    }
+}

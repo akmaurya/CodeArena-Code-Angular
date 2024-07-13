@@ -3,44 +3,26 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { HomeComponent } from './home/home.component';
+import { RegisterUserComponent } from './register-user/register-user.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
-import { ProfileComponent } from './profile/profile.component';
-import { SubscriptionComponent } from './subscription/subscription.component';
-import { VideoPlayerComponent } from './video-player/video-player.component';
-import { CategoryComponent } from './category/category.component';
-import { GroupComponent } from './group/group.component';
-import { AuthService } from './auth.service';
-import { VideoService } from './video.service';
-import { CategoryService } from './category.service';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { JwtInterceptor } from './jwt.interceptor';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    LoginComponent,
-    SignupComponent,
-    ProfileComponent,
-    SubscriptionComponent,
-    VideoPlayerComponent,
-    CategoryComponent,
-    GroupComponent
+    RegisterUserComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [
-    provideClientHydration(),
-    provideAnimationsAsync(),
-    AuthService,
-    VideoService,
-    CategoryService,
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+    provideClientHydration()
   ],
   bootstrap: [AppComponent]
 })

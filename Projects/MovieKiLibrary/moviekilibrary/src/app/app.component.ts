@@ -12,11 +12,16 @@ import { filter } from 'rxjs';
 export class AppComponent implements OnInit{
   title = 'moviekilibrary';
   currentRouteName: string = '';
-
+  
   visitCount: number=0;
+  // activeTab: string = 'bollywood'; // default tab
 
+  
   constructor(private visitCounterService: VisitCounterService, private router: Router, private activatedRoute: ActivatedRoute) {}
-
+  
+  // setActiveTab(tab: string) {
+  //   this.activeTab = tab;
+  // }
   ngOnInit(): void {
     this.visitCount = this.visitCounterService.getVisitCount();
 
@@ -33,4 +38,6 @@ export class AppComponent implements OnInit{
         });
       });
   }
+
+  
 }

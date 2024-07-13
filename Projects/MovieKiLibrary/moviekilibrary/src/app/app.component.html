@@ -35,6 +35,14 @@
       </div>
     </div>
   </nav>
+  
+  <!-- <app-search (searchResult)="setActiveTab($event)"></app-search>
+  <div [ngSwitch]="activeTab">
+    <app-bollywood *ngSwitchCase="'bollywood'"></app-bollywood>
+    <app-hollywood *ngSwitchCase="'hollywood'"></app-hollywood>
+    <app-south *ngSwitchCase="'south'"></app-south>
+    <app-short-movies *ngSwitchCase="'shortMovies'"></app-short-movies>
+  </div> -->
 
   <div class="content-container">
     <router-outlet></router-outlet>
