@@ -1,0 +1,19 @@
+<div class="main-container">
+  <div class="content">
+  </div>
+  <div class="auth-container">
+    <nav>
+      <ul>
+        <li *ngIf="!authService.isLoggedIn()"><a routerLink="/login" routerLinkActive="active">Login</a></li>
+        <li *ngIf="!authService.isLoggedIn()"><a routerLink="/register" routerLinkActive="active">Register</a></li>
+        <li *ngIf="authService.isLoggedIn()"><a routerLink="/documents" routerLinkActive="active">Profile</a></li>
+        <li *ngIf="authService.isLoggedIn()"><a (click)="authService.logout()">Logout</a></li>
+      </ul>
+      <!-- <router-outlet *ngIf="!authService.isLoggedIn()"></router-outlet> -->
+    </nav>
+  </div>
+</div>
+<hr/>
+<div class="main-container1">
+  <router-outlet ></router-outlet>
+</div>

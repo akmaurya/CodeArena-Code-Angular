@@ -1,5 +1,5 @@
 <!-- src/app/register/register.component.html -->
- <body *ngIf="responseUser.id!=null">User Registered Successfully | {{responseUser.userName}}</body>
+<body *ngIf="responseUser.id!=null">User Registered Successfully | {{responseUser.userName}}</body>
 <form *ngIf="responseUser.id==null" (ngSubmit)="onSubmit()" #registerForm="ngForm">
     <div>
         <label for="username">Username:</label>

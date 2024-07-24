@@ -1,0 +1,312 @@
+explain me each and every table who will use which table And why and how?
+
+
+Certainly! Below is an explanation of each table, who will use them, and how and why they will be used in the context of your streaming service.
+
+User Management
+Users
+sql
+Copy code
+CREATE TABLE Users (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    user_type ENUM('Creator', 'Viewer') NOT NULL,
+    registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    last_login TIMESTAMP
+);
+Purpose: Store user information for both content creators and viewers.
+
+Users: Both content creators and viewers.
+Usage:
+Store email, hashed password, and user type.
+Track registration and last login timestamps.
+Profiles
+sql
+Copy code
+CREATE TABLE Profiles (
+    profile_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    profile_name VARCHAR(100),
+    profile_picture_url VARCHAR(255),
+    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+);
+Purpose: Manage user profiles.
+
+Users: Both content creators and viewers.
+Usage:
+Store profile names and profile pictures for users.
+SubscriptionPlans
+sql
+Copy code
+CREATE TABLE SubscriptionPlans (
+    plan_id INT AUTO_INCREMENT PRIMARY KEY,
+    plan_name VARCHAR(100),
+    plan_description TEXT,
+    plan_price DECIMAL(10, 2),
+    plan_duration INT,
+    plan_active BOOLEAN DEFAULT TRUE
+);
+Purpose: Define subscription plans available to viewers.
+
+Users: Viewers.
+Usage:
+Store details of each subscription plan including price and duration.
+WatchHistory
+sql
+Copy code
+CREATE TABLE WatchHistory (
+    watch_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    content_id INT,
+    watch_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id),
+    FOREIGN KEY (content_id) REFERENCES Content(content_id)
+);
+Purpose: Track watch history of viewers.
+
+Users: Viewers.
+Usage:
+Store which content was watched by which viewer and when.
+Favorites
+sql
+Copy code
+CREATE TABLE Favorites (
+    favorite_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    content_id INT,
+    added_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id),
+    FOREIGN KEY (content_id) REFERENCES Content(content_id)
+);
+Purpose: Manage the list of favorite content for viewers.
+
+Users: Viewers.
+Usage:
+Store which content a viewer has marked as favorite.
+Content Management
+Content
+sql
+Copy code
+CREATE TABLE Content (
+    content_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    title VARCHAR(255),
+    description TEXT,
+    release_date DATE,
+    content_type ENUM('Short Video', 'Normal Video'),
+    is_series BOOLEAN DEFAULT FALSE,
+    genre_id INT,
+    category_id INT,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id),
+    FOREIGN KEY (genre_id) REFERENCES Genres(genre_id),
+    FOREIGN KEY (category_id) REFERENCES Categories(category_id)
+);
+Purpose: Store metadata about content uploaded by creators.
+
+Users: Content creators and viewers.
+Usage:
+Store details such as title, description, release date, type, and whether it's part of a series.
+Episodes
+sql
+Copy code
+CREATE TABLE Episodes (
+    episode_id INT AUTO_INCREMENT PRIMARY KEY,
+    content_id INT,
+    episode_title VARCHAR(255),
+    episode_number INT,
+    season_number INT,
+    release_date DATE,
+    FOREIGN KEY (content_id) REFERENCES Content(content_id)
+);
+Purpose: Manage episodes for series.
+
+Users: Content creators and viewers.
+Usage:
+Store episode details for content marked as a series.
+Categories and Genres
+sql
+Copy code
+CREATE TABLE Categories (
+    category_id INT AUTO_INCREMENT PRIMARY KEY,
+    category_name VARCHAR(100)
+);
+
+CREATE TABLE Genres (
+    genre_id INT AUTO_INCREMENT PRIMARY KEY,
+    genre_name VARCHAR(100)
+);
+Purpose: Classify content into categories and genres.
+
+Users: Content creators and viewers.
+Usage:
+Store and manage categories and genres for content organization.
+Ratings
+sql
+Copy code
+CREATE TABLE Ratings (
+    rating_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    content_id INT,
+    rating INT CHECK(rating BETWEEN 1 AND 5),
+    review TEXT,
+    rating_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id),
+    FOREIGN KEY (content_id) REFERENCES Content(content_id)
+);
+Purpose: Allow viewers to rate and review content.
+
+Users: Viewers.
+Usage:
+Store user ratings and reviews for content.
+Streaming and Playback
+VideoFiles
+sql
+Copy code
+CREATE TABLE VideoFiles (
+    video_id INT AUTO_INCREMENT PRIMARY KEY,
+    content_id INT,
+    video_url VARCHAR(255),
+    quality ENUM('1080p', '720p', '480p'),
+    FOREIGN KEY (content_id) REFERENCES Content(content_id)
+);
+Purpose: Manage video files and streaming URLs.
+
+Users: Content creators and viewers.
+Usage:
+Store URLs and quality details for video files.
+PlaybackProgress
+sql
+Copy code
+CREATE TABLE PlaybackProgress (
+    progress_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    content_id INT,
+    progress_time TIME,
+    last_watched TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id),
+    FOREIGN KEY (content_id) REFERENCES Content(content_id)
+);
+Purpose: Track playback progress for viewers.
+
+Users: Viewers.
+Usage:
+Store playback position and last watched timestamp for content.
+Devices
+sql
+Copy code
+CREATE TABLE Devices (
+    device_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    device_name VARCHAR(100),
+    device_type VARCHAR(100),
+    registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+);
+Purpose: Manage devices registered by users.
+
+Users: Both content creators and viewers.
+Usage:
+Store information about devices used by users.
+Billing and Payments
+PaymentTransactions
+sql
+Copy code
+CREATE TABLE PaymentTransactions (
+    transaction_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    plan_id INT,
+    amount DECIMAL(10, 2),
+    transaction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status ENUM('Pending', 'Completed', 'Failed'),
+    FOREIGN KEY (user_id) REFERENCES Users(user_id),
+    FOREIGN KEY (plan_id) REFERENCES SubscriptionPlans(plan_id)
+);
+Purpose: Track payment transactions.
+
+Users: Viewers.
+Usage:
+Store transaction details for subscription payments.
+Invoices
+sql
+Copy code
+CREATE TABLE Invoices (
+    invoice_id INT AUTO_INCREMENT PRIMARY KEY,
+    transaction_id INT,
+    invoice_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    due_date DATE,
+    amount DECIMAL(10, 2),
+    status ENUM('Paid', 'Unpaid'),
+    FOREIGN KEY (transaction_id) REFERENCES PaymentTransactions(transaction_id)
+);
+Purpose: Manage invoices for payments.
+
+Users: Viewers.
+Usage:
+Store and manage invoice details for payments.
+Analytics and Reporting
+ViewingStatistics
+sql
+Copy code
+CREATE TABLE ViewingStatistics (
+    stat_id INT AUTO_INCREMENT PRIMARY KEY,
+    content_id INT,
+    view_count INT,
+    last_viewed TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (content_id) REFERENCES Content(content_id)
+);
+Purpose: Track viewing statistics for content.
+
+Users: System administrators and data analysts.
+Usage:
+Store view counts and last viewed timestamps for content analysis.
+UserEngagement
+sql
+Copy code
+CREATE TABLE UserEngagement (
+    engagement_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    login_count INT,
+    watch_time INT, -- Total watch time in minutes
+    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+);
+Purpose: Track user engagement metrics.
+
+Users: System administrators and data analysts.
+Usage:
+Store login counts and total watch time for user engagement analysis.
+Notifications and Communication
+Notifications
+sql
+Copy code
+CREATE TABLE Notifications (
+    notification_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    message TEXT,
+    notification_type ENUM('Email', 'Push'),
+    sent_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status ENUM('Sent', 'Pending'),
+    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+);
+Purpose: Manage email and push notifications.
+
+Users: Both content creators and viewers.
+Usage:
+Store notification details and statuses for communication.
+InAppMessages
+sql
+Copy code
+CREATE TABLE InAppMessages (
+    message_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    message TEXT,
+    sent_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status ENUM('Read', 'Unread'),
+    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+);
+Purpose: Manage in-app messages.
+
+Users: Both content creators and viewers.
+Usage:
+Store and track status of in-app messages.
+These tables collectively support the various features and functionalities of a streaming service like Hotstar, ensuring that user management, content management, streaming, billing, analytics, and notifications are well-integrated and organized.

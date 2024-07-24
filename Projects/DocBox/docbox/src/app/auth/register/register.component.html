@@ -1,0 +1,19 @@
+ <!-- src/app/register/register.component.html -->
+ <form (ngSubmit)="register()" #registerForm="ngForm">
+     <div>
+         <label for="username">Username:</label>
+         <input type="text" id="username" required [(ngModel)]="userDetails.username" name="username">
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" required [(ngModel)]="userDetails.email" name="email">
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" required [(ngModel)]="userDetails.password" name="password">
+        </div>
+        <button type="submit">Register</button>
+        <div *ngIf="userDetails.id!=null" class="success">User Registered Successfully | {{userDetails.username}}</div>
+        <div *ngIf="userDetails.status" class="error">This user name ({{userDetails.username}}) is already registered with us | Please try another one.</div>
+</form>
+

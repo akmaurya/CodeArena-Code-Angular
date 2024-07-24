@@ -1,0 +1,128 @@
+<div class="container">
+  <!-- Left Pane -->
+  <div class="left-pane">
+    <div class="user-card" *ngIf="userDetails">
+      <h3>User Details</h3>
+      <p><strong>Username:</strong> {{ userDetails.username }}</p>
+      <p><strong>ID:</strong> {{ userDetails.id }}</p>
+      <p><strong>Email:</strong> {{ userDetails.email }}</p>
+      <p><strong>Account Status:</strong> {{ userDetails.accountNonLocked ? 'Active' : 'Locked' }}</p>
+    </div>
+  </div>
+
+  <!-- Center Pane -->
+  <div class="center-pane">
+    <div class="message-success" *ngIf="addDocumentAdded">{{ addDocumentAdded }}</div>
+    <div class="message-success" *ngIf="addDocumentUpdated">{{ addDocumentUpdated }}</div>
+    <div class="message-failed" *ngIf="documentDeletedMessage">{{ documentDeletedMessage }}</div>
+
+    <button class="add-document-btn" (click)="toggleForm(1)">Add New Document</button>
+    <div class="documents-card" *ngIf="showFormAdd">
+      <form [formGroup]="documentForm" (ngSubmit)="onSubmit()">
+        <label for="documentType">Document Name</label>
+        <input id="documentType" type="text" formControlName="documentType" required>
+        <label for="documentType">Document Fields</label>
+        <div formArrayName="fields">
+          <div *ngFor="let field of fields.controls; let i = index" [formGroupName]="i" class="field-group">
+            <div class="card-actions">
+              <input type="text" formControlName="key" placeholder="Key" required>
+              <input type="text" formControlName="value" placeholder="Value" required>
+              <button type="button" class="red-button" (click)="removeField(i)">Delete</button>
+            </div>
+          </div>
+          <div class="card-actions">
+            <button type="button" class="green-button" (click)="addField()">Add Field</button>
+          </div>
+        </div>
+  
+        <label for="images">Image URLs (comma separated)</label>
+        <input id="images" type="text" formControlName="images" required>
+        <div class="card-actions">
+          <button type="submit" class="green-button">Submit</button>
+          <button type="button" (click)="toggleForm(1)" class="blue-button">Cancel</button>
+        </div>
+      </form>
+    </div>
+
+
+    <!-- Details View -->
+    <div class="documents-card" *ngFor="let document of documents; let doci = index">
+      <div class="div1" (click)="document.expanded = !document.expanded">
+        <h3 class="card-title" ><label for="documentType">Document [{{doci+1}}]-: {{ document.documentType }}</label></h3>
+      </div>
+      <div *ngIf="document.expanded" class="div2">
+        <pre>{{ document.fields | json }}</pre>
+        <div *ngIf="document.images && document.images.length">
+          <p><strong>Images:</strong></p>
+          <ul>
+            <li *ngFor="let image of document.images">
+              <a [href]="image.imageUrl" target="_blank">{{ image.imageUrl }}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- <div class="message-success" *ngIf="addDocumentUpdated">{{ addDocumentUpdated }}</div> -->
+      <div class="card-actions">
+        <button (click)="delete(document.id)" class="red-button">Delete</button>
+        <button (click)="editDocument(document)" class="blue-button">Update</button>
+      </div>
+      <!-- Update Form -->
+      <div>
+        <!-- Parent:--{{document.id}} -->
+        <div class="right-pane" *ngIf="showFormUpdate && document.id==(documentToEdit!=null?documentToEdit.id:false)">
+          <!-- Chield:--{{documentToEdit!=null?documentToEdit.id:''}} -->
+          <form [formGroup]="documentForm" (ngSubmit)="onSubmit()">
+            <label for="documentType">Document Name</label>
+            <input id="documentType" type="text" formControlName="documentType" required>
+            <label for="documentType">Document Fields</label>
+            <div formArrayName="fields">
+              <div *ngFor="let field of fields.controls; let i = index" [formGroupName]="i" class="field-group">
+                <div class="card-actions">
+                  <input type="text" formControlName="key" placeholder="Key" required>
+                  <input type="text" formControlName="value" placeholder="Value" required>
+                  <button type="button" (click)="removeField(i)" class="red-button">Delete</button>
+                </div>
+              </div>
+              <div class="card-actions">
+                <button type="button" class="green-button" (click)="addField()">Add Field</button>
+              </div>
+            </div>
+  
+            <label for="images">Image URLs (comma separated)</label>
+            <input id="images" type="text" formControlName="images" required>
+            <div class="card-actions">
+              <button type="submit" class="green-button">Submit</button>
+              <button type="button" (click)="toggleForm(2)" class="blue-button">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- Update form -->
+  <!-- <div class="right-pane" *ngIf="showFormUpdate">
+    Chield:--{{documentToEdit!=null?documentToEdit.id:""}}
+    <form [formGroup]="documentForm" (ngSubmit)="onSubmit()">
+      <label for="documentType">Document Name</label>
+      <input id="documentType" type="text" formControlName="documentType" required>
+      <label for="documentType">Document Fields</label>
+      <div formArrayName="fields">
+        <div *ngFor="let field of fields.controls; let i = index" [formGroupName]="i" class="field-group">
+          <input type="text" formControlName="key" placeholder="Key" required>
+          <input type="text" formControlName="value" placeholder="Value" required>
+          <button type="button" (click)="removeField(i)">Delete</button>
+        </div>
+        <button type="button" (click)="addField()">Add Field</button>
+      </div>
+
+      <label for="images">Image URLs (comma separated)</label>
+      <input id="images" type="text" formControlName="images" required>
+      <div class="card-actions">
+        <button type="submit">Submit</button>
+        <button type="button" (click)="toggleForm(2)">Cancel</button>
+      </div>
+    </form>
+  </div> -->
+<!-- </div> -->

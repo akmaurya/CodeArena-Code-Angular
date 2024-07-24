@@ -1,0 +1,77 @@
+/* confirm-dialog.component.css */
+.dialog-title {
+    font-size: 24px;
+    color: #f0f0f0;
+    text-align: center;
+    margin-bottom: 20px;
+    /* animation: fadeInDown 2s; */
+  }
+  
+  .dialog-content {
+    font-size: 16px;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 20px;
+    animation: fadeInUp 0.5s;
+  }
+  
+  .dialog-actions {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .dialog-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .dialog-no {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .dialog-yes {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .dialog-button:hover {
+    transform: scale(1.1);
+  }
+  
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .div1{
+    width: 99%;
+    border: 2px solid rgb(29, 157, 243);
+    background-color: #464b6a;
+    padding-bottom: 15px;
+    /* margin-bottom: 10px; */
+    border-radius: 10px;
+    /* float: right; */
+    /* float: left; */
+  }

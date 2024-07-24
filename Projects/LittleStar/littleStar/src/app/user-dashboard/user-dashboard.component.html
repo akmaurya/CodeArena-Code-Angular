@@ -1,0 +1,8 @@
+<p>user-dashboard works!</p>
+<button class="button" (click)="getUserDetails()">Get Details</button>
+<div *ngIf="user">
+    <h2>Welcome, {{ user.username }}!</h2>
+    <p>Email: {{ user.email }}</p>
+    <!-- Display more user details as needed -->
+</div>
+  

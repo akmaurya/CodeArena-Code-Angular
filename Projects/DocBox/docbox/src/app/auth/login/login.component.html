@@ -1,0 +1,18 @@
+<body *ngIf="token!=null">Hi | {{loginRequest.username}}</body>
+<div *ngIf="token==null">
+    <form (ngSubmit)="login()" #loginForm="ngForm">
+    <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" [(ngModel)]="loginRequest.username" name="username" required>
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" [(ngModel)]="loginRequest.password" name="password" required>
+    </div>
+    <button type="submit">Login</button>
+    <div *ngIf="loginError" class="error">
+      {{ loginError }}
+    </div>
+  </form>
+  
+</div>
