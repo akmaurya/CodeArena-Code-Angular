@@ -1,0 +1,40 @@
+.image-gallery {
+    overflow-x: auto; /* Enable horizontal scrolling */
+    white-space: nowrap; /* Prevent line breaks */
+    display: flex;
+    /* align-items: center; */
+    padding: 10px 0; /* Add vertical padding for better spacing */
+  }
+  
+  .image-gallery-container {
+    display: flex;
+    flex-wrap: nowrap; /* Ensure images stay in one line */
+}
+
+.image {
+    display: flex;
+    max-height: 150px; /* Adjust the height as needed */
+    margin-right: 10px; /* Space between images */
+    flex-shrink: 0; /* Prevent images from shrinking */
+    /* vertical-align: middle; Align images vertically */
+    width: 100%;
+  }
+  
+  @media (max-width: 768px) {
+    .image-gallery img {
+      max-height: 120px; /* Adjust height for smaller screens */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .image-gallery img {
+      max-height: 100px; /* Further adjust height for very small screens */
+    }
+  }
+
+  .image-name {
+    /* background-color: #89763400; Gold color for header */
+    /* padding: 1px; */
+    text-align: center;
+    color: #ffffff;
+}

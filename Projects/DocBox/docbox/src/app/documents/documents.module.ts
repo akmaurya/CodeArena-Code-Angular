@@ -11,12 +11,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { ImageTileComponent } from './document-list/image-tile/image-tile.component';
 
 
 @NgModule({
   declarations: [
     DocumentListComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    ImageTileComponent
   ],
   imports: [
     CommonModule,

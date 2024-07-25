@@ -1,6 +1,6 @@
 <div class="container">
   <!-- Left Pane -->
-  <div class="left-pane">
+  <div class="left-pane div3-border">
     <div class="user-card" *ngIf="userDetails">
       <h3>User Details</h3>
       <p><strong>Username:</strong> {{ userDetails.username }}</p>
@@ -11,13 +11,13 @@
   </div>
 
   <!-- Center Pane -->
-  <div class="center-pane">
+  <div class="center-pane div3-border">
     <div class="message-success" *ngIf="addDocumentAdded">{{ addDocumentAdded }}</div>
     <div class="message-success" *ngIf="addDocumentUpdated">{{ addDocumentUpdated }}</div>
     <div class="message-failed" *ngIf="documentDeletedMessage">{{ documentDeletedMessage }}</div>
 
     <button class="add-document-btn" (click)="toggleForm(1)">Add New Document</button>
-    <div class="documents-card" *ngIf="showFormAdd">
+    <div class="documents-card div3-border" *ngIf="showFormAdd">
       <form [formGroup]="documentForm" (ngSubmit)="onSubmit()">
         <label for="documentType">Document Name</label>
         <input id="documentType" type="text" formControlName="documentType" required>
@@ -36,8 +36,8 @@
         </div>
   
         <label for="images">Image URLs (comma separated)</label>
-        <input id="images" type="text" formControlName="images" required>
         <div class="card-actions">
+          <input id="images" type="text" formControlName="images">
           <button type="submit" class="green-button">Submit</button>
           <button type="button" (click)="toggleForm(1)" class="blue-button">Cancel</button>
         </div>
@@ -46,19 +46,32 @@
 
 
     <!-- Details View -->
-    <div class="documents-card" *ngFor="let document of documents; let doci = index">
-      <div class="div1" (click)="document.expanded = !document.expanded">
-        <h3 class="card-title" ><label for="documentType">Document [{{doci+1}}]-: {{ document.documentType }}</label></h3>
+    <div class="documents-card div3-border" *ngFor="let document of documents; let doci = index">
+      <div class="div1 div3-border" (click)="document.expanded = !document.expanded">
+        <h3 class="card-title" >Document [{{doci+1}}]-: {{ document.documentType }}</h3>
       </div>
       <div *ngIf="document.expanded" class="div2">
-        <pre>{{ document.fields | json }}</pre>
-        <div *ngIf="document.images && document.images.length">
-          <p><strong>Images:</strong></p>
-          <ul>
-            <li *ngFor="let image of document.images">
-              <a [href]="image.imageUrl" target="_blank">{{ image.imageUrl }}</a>
-            </li>
-          </ul>
+        <div class="table div3-details">
+          <div class="table">
+            <div class="table-row" *ngFor="let item of document.fields | keyvalue">
+              <div class="table-cell key-column"><strong>{{ item.key }}</strong></div>
+              <div class="table-cell separator-column">:</div>
+              <div class="table-cell value-column">{{ item.value }}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="div3-details" *ngIf="document.images && document.images.length">
+          <div class="div3-tab">
+            <h3 class="card-title" >Images</h3>
+          </div>
+              <div class="div3-details div3-border">
+                <div class="image-gallery">
+                  <div class="image-gallery-container">
+                    <app-image-tile *ngFor="let image of document.images" [imageSrc]="image.imageUrl"></app-image-tile>
+                  </div>
+                </div>
+              </div>
         </div>
       </div>
       <!-- <div class="message-success" *ngIf="addDocumentUpdated">{{ addDocumentUpdated }}</div> -->

@@ -83,7 +83,7 @@ export class DocumentListComponent implements OnInit {
       userId: this.userDetails.id,
       documentType: this.documentForm.value.documentType,
       fields,
-      images: this.documentForm.value.images.split(',').map((url: string) => ({ imageUrl: url.trim() }))
+      images: this.documentForm.value.images!=null?this.documentForm.value.images.split(',').map((url: string) => ({ imageUrl: url.trim() })):null
     };
 
     if (this.editMode) {

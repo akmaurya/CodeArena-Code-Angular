@@ -30,7 +30,7 @@
 
 @media (min-width: 768px) {
   .left-pane, .right-pane {
-    flex: 1 1 25%;
+    flex: 1 1 5%;
   }
 
   .center-pane {
@@ -153,7 +153,7 @@ label {
 
 /* Card title styling */
 .div1 .card-title {
-  font-weight: bold;
+  font-weight: normal;
   cursor: pointer;
   color: #ffffff;;
 }
@@ -182,7 +182,7 @@ form {
 }
 
 .div1{
-  width: 80%;
+  width: 97%;
   /* border: 2px solid rgb(18, 238, 234); */
   padding-left: 20px;
   padding-top: 2px;
@@ -196,12 +196,111 @@ form {
 }
 
 .div2{
-  width: 80%;
-  border: 2px solid rgb(29, 157, 243);
+  width: 90%;
+  /* border: 2px solid rgb(29, 157, 243); */
   background-color: #464b6a;
   padding: 5px;
   margin-bottom: 10px;
   border-radius: 10px;
   /* float: right; */
   /* float: left; */
+}
+
+.div3-border{
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 10px;
+}
+
+.div3-bottom-border{
+  /* border: 2px solid rgb(255, 255, 255); */
+  border-bottom: 1px solid rgb(255, 255, 255);
+
+}
+
+.div3-details{
+  padding: 30px;
+}
+
+.div3-tab{
+  padding-left: 30px;
+}
+
+.div3-height{
+  height: 40px;
+}
+
+.div-float-left{
+  padding: 5px;
+  margin-bottom: 10px;
+  /* float: right; */
+  float: left;
+}
+
+
+
+.table {
+  display: flex;
+  flex-direction: column;
+}
+
+.table-row {
+  display: flex;
+  width: 100%;
+  /* height: 80%; */
+  border-bottom: 1px solid rgb(255, 255, 255);
+}
+
+.table-cell {
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.key-column {
+  flex: 1;
+}
+
+.separator-column {
+  flex: 2;
+  text-align: center;
+}
+
+.value-column {
+  flex: 7;
+}
+
+@media (max-width: 300px) {
+  .table-row {
+    flex-direction: column;
+  }
+}
+
+
+.image-gallery {
+  overflow-x: auto; /* Enable horizontal scrolling if needed */
+  white-space: nowrap; /* Prevent line breaks */
+  padding: 10px 0; /* Add vertical padding for better spacing */
+}
+
+.image-gallery-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjust the number of columns based on available space */
+  gap: 20px; /* Space between images */
+}
+
+/* .image-gallery img {
+  max-height: 150px; /* Adjust the height as needed */
+  /* width: 100%; Make images fill the container */
+  /* object-fit: cover; Ensure images cover the container without distortion */
+/* } */
+
+@media (max-width: 768px) {
+  .image-gallery img {
+    max-height: 120px; /* Adjust height for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .image-gallery img {
+    max-height: 100px; /* Further adjust height for very small screens */
+  }
 }
