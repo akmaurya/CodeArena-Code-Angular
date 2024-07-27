@@ -1,0 +1,346 @@
+/* Container styling */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  height: 85vh;
+  padding: 16px;
+  box-sizing: border-box;
+  gap: 16px;
+  background: #262835;
+  color: #b2b2b2;
+}
+
+/* Pane styling */
+.left-pane, .center-pane, .right-pane {
+  background: #2e303d;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, opacity 0.3s;
+  /* height: 550px; */
+  /* height: vh; */
+}
+
+/* Responsive layout */
+.left-pane, .right-pane {
+  flex: 1 1 100%;
+}
+
+.center-pane {
+  flex: 2 1 100%;
+}
+
+@media (min-width: 768px) {
+  .left-pane, .right-pane {
+    flex: 1 1 5%;
+  }
+
+  .center-pane {
+    flex: 2 1 50%;
+  }
+}
+
+/* Message styling */
+.message-success {
+  margin-bottom: 16px;
+  color: #008255;
+  font-weight: bold;
+}
+
+/* Message styling */
+.message-failed {
+  margin-bottom: 16px;
+  color: #de1212;
+  font-weight: bold;
+}
+
+.card-actions {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Space between items */
+}
+
+/* Button styling */
+.add-document-btn, .card-actions button, .field-group button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.add-document-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.add-document-btn:hover {
+  background-color: #45a049;
+}
+
+.field-group button, .card-actions button {
+  background-color: #0275d8;
+  color: white;
+}
+
+.field-group button:hover, .card-actions button:hover {
+  background-color: #025aa5;
+}
+
+.card-actions .red-button {
+  background-color: #ffadaa;
+  margin-right: 50px;
+}
+
+.card-actions .red-button:hover {
+  background-color: #c9302c;
+  margin-right: 50px;
+}
+
+.card-actions .green-button {
+  background-color: #4CAF50;
+  margin-right: 50px;
+}
+
+.card-actions .green-button:hover {
+  background-color: #45a049;
+  margin-right: 50px;
+}
+
+.card-actions .blue-button {
+  background-color: #2daaed;
+  margin-right: 50px;
+}
+
+.card-actions .blue-button:hover {
+  background-color: #004ebb;
+  margin-right: 50px;
+}
+
+/* Input field styling */
+.field-group input, input[type="text"], input[type="password"] {
+  flex: 1;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  background-color: #727475;
+  border-radius: 5px;
+  box-sizing: border-box;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+  border-color: #5fbae9;
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+}
+
+/* Label styling */
+label {
+  display: block;
+  margin-bottom: 10px;
+  color: #b2b2b2;
+  font-weight: bold;
+}
+
+/* Documents card styling */
+.documents-card {
+  margin-bottom: 16px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background: #3c3f50;
+  transition: transform 0.3s, box-shadow 0.3s;
+  color: #b2b2b2;
+}
+
+.documents-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Card title styling */
+.div1 .card-title {
+  font-weight: normal;
+  cursor: pointer;
+  color: #b2b2b2;;
+}
+
+/* Animation for form appearance */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+form {
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Error message styling */
+.error {
+  color: #d9534f;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.div1{
+  width: 97%;
+  /* border: 2px solid rgb(18, 238, 234); */
+  padding-left: 20px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background-color: #464b6a;
+  color: #b2b2b2;
+  /* float: right; */
+  /* float: left; */
+}
+
+.div2{
+  width: 90%;
+  /* border: 2px solid rgb(29, 157, 243); */
+  background-color: #464b6a;
+  padding: 5px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  /* float: right; */
+  /* float: left; */
+}
+
+.div3-border{
+  border: 2px solid #b2b2b2;
+  border-radius: 10px;
+}
+
+.div3-bottom-border{
+  /* border: 2px solid rgb(255, 255, 255); */
+  border-bottom: 1px solid #b2b2b2;
+  padding-bottom: 20px;
+
+}
+
+.div3-details{
+  padding: 30px;
+}
+
+.div3-tab{
+  padding-left: 30px;
+}
+
+.div3-height{
+  height: 40px;
+}
+
+.div-float-left{
+  padding: 5px;
+  margin-bottom: 10px;
+  /* float: right; */
+  float: left;
+}
+
+
+
+.table {
+  display: flex;
+  flex-direction: column;
+}
+
+.table-row {
+  display: flex;
+  width: 100%;
+  /* height: 80%; */
+  border-bottom: 1px solid #b2b2b2;
+}
+
+.table-cell {
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.key-column {
+  flex: 1;
+}
+
+.separator-column {
+  flex: 2;
+  text-align: center;
+}
+
+.value-column {
+  flex: 7;
+}
+
+@media (max-width: 300px) {
+  .table-row {
+    flex-direction: column;
+  }
+}
+
+
+.image-gallery {
+  /* overflow-x: auto; Enable horizontal scrolling if needed */
+  white-space: nowrap; /* Prevent line breaks */
+  padding: 10px 0; /* Add vertical padding for better spacing */
+}
+
+.image-gallery-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjust the number of columns based on available space */
+  gap: 20px; /* Space between images */
+}
+
+
+@media (max-width: 768px) {
+  .image-gallery img {
+    max-height: 120px; /* Adjust height for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .image-gallery img {
+    max-height: 100px; /* Further adjust height for very small screens */
+  }
+}
+
+.pointer{
+  cursor: pointer;
+}
+
+.active{
+  color: #008255;
+  font-weight: bold;
+}
+
+
+div.scroll {
+  background-color: #434762;
+  width: 600px;
+  height: 75vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  /* text-align: center; */
+  padding: 20px;
+}
+
+div.scrollx {
+  background-color: #434762;
+  /* width: 100%; */
+  height: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+  /* text-align: center; */
+  padding: 20px;
+}
+
+.div-center-content{
+  text-align: center;
+  justify-content: center;
+}

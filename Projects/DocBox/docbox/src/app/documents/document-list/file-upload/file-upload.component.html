@@ -1,0 +1,10 @@
+<!-- <input type="file" class="fa fa-file-upload" (change)="onFileSelected($event)"> -->
+
+<div class="custom-file-upload">
+    <label for="file-upload" class="file-upload-label">
+      <span class="file-upload-text">{{ 'Choose File' }}</span>
+      <input type="file" id="file-upload" (change)="onFileSelected($event)">
+    </label>
+    <!-- <div class="file-chosen-text">{{ selectedFileName || 'No file chosen' }}</div> -->
+</div>
+  

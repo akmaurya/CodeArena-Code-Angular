@@ -21,16 +21,16 @@ export class DocumentService {
     return this.http.get(`${this.getDocumentsUrl}/${userid}`, { headers });
   }
 
-  addDocument(document: UserDocument): Observable<UserDocument> {
+  addDocument(document: FormData): Observable<UserDocument> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
     return this.http.post<UserDocument>(`${this.documentsUrl}`, document, {headers});
   }
 
 
   // Method to update an existing document
-  updateDocument(document: UserDocument): Observable<UserDocument> {
+  updateDocument(document: FormData, docId:number): Observable<UserDocument> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
-    return this.http.put<UserDocument>(`${this.documentsUrl}/${document.id}`, document, {headers});
+    return this.http.put<UserDocument>(`${this.documentsUrl}/${docId}`, document, {headers});
   }
 
   // Method to delete a document by ID

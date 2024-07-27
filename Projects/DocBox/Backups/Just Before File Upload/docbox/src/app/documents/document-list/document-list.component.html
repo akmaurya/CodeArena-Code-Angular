@@ -1,0 +1,173 @@
+<div class="container">
+
+
+  <!-- Left Pane -->
+  <div class="left-pane div3-border">
+    <div class="user-card" *ngIf="userDetails">
+      <div class="card-actions">
+          <div class="table-row field-group">
+            <div class="card-actions">
+              <div class="table-cell key-column">
+                <img style="width:80px; border-radius: 50%;" src="../../../assets/img/AadharImage/img_avatar.png" alt="Avatar">
+              </div>
+              <div class="table-cell key-column">
+                <p> {{ userDetails.username }}</p>
+                <p>{{ userDetails.email }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="table-row field-group">
+          <div class="card-actions">
+            <h3>Menu</h3>
+          </div>
+        </div>
+        <div class="div3-tab">
+          <h5 (click)="changeMenue(1)" [ngClass]="{'active': menuType==1}" class="pointer">Document’s List </h5>
+          <h5 (click)="changeMenue(2)" [ngClass]="{'active': menuType==2}" class="pointer">Document’s Detailed List </h5>
+          <h5 (click)="changeMenue(3)" [ngClass]="{'active': menuType==3}" class="pointer">Document’s Image List </h5>
+        </div>
+    </div>
+  </div>
+
+
+
+  <!-- Right Pane -->
+  <div class="center-pane div3-border scroll">
+
+    <!-- Status Messages -->
+    <div class="message-success" *ngIf="addDocumentAdded">{{ addDocumentAdded }}</div>
+    <div class="message-success" *ngIf="addDocumentUpdated">{{ addDocumentUpdated }}</div>
+    <div class="message-failed" *ngIf="documentDeletedMessage">{{ documentDeletedMessage }}</div>
+
+    <!-- Add New Document  -->
+     <div class="div3-tab">
+      <button class="add-document-btn" (click)="toggleForm(1)">Add New Document</button>
+    </div>
+    
+    <div class="documents-card div3-border" *ngIf="showFormAdd">
+      <!-- Add New Document Form -->
+      <form [formGroup]="documentForm" (ngSubmit)="onSubmit()">
+        <div class="card-actions">
+          <label for="documentType">Document Name</label>
+          <input id="documentType" type="text" formControlName="documentType" required>
+        </div>
+        <div class="card-actions">
+          <label for="documentType">Document Fields</label>
+          <div formArrayName="fields">
+            <div *ngFor="let field of fields.controls; let i = index" [formGroupName]="i" class="field-group">
+              <div class="card-actions">
+                <input type="text" formControlName="key" placeholder="Key" required>
+                <input type="text" formControlName="value" placeholder="Value" required>
+                <!-- Delete Field -->
+                <button type="button" class="red-button" (click)="removeField(i)"><i class="fa fa-trash"></i></button>
+              </div>
+            </div>
+            <!-- Add Field -->
+            <div class="card-actions">
+              <button type="button" class="green-button" (click)="addField()"><i class="fa fa-add"></i></button>
+            </div>
+          </div>
+        </div>
+        <!-- Add New Document Images -->
+         <app-file-upload></app-file-upload>
+         <!-- <app-file-upload (fileSelected)="onFileSelected($event)"></app-file-upload> -->
+        <label for="images">Image URLs (comma separated)</label>
+        <div class="card-actions">
+          <input id="images" type="text" formControlName="images">
+        </div>
+        <div class="card-actions div-center-content">
+          <button type="submit" class="green-button">Submit</button>
+          <button type="button" (click)="toggleForm(1)" class="blue-button">Cancel</button>
+        </div>
+      </form>
+    </div>
+
+
+
+    
+    <!-- Document View -->
+    <div class="documents-card div3-border" *ngFor="let document of documents; let doci = index">
+      <div class="div1 div3-border" (click)="document.expanded = !document.expanded" >
+        <!-- Document Name -->
+        <h3 class="card-title" >{{doci+1}}.  {{ document.documentType }}</h3>
+      </div>
+
+      <!-- Document Details -->
+      <div *ngIf="document.expanded && (menuType!=1 || (document.images && document.images.length>0 && document.images[0].imageUrl!=''))" class="div2">
+        <div *ngIf="menuType==2" class="table div3-details">
+          <div class="table">
+            <div class="table-row div3-bottom-border" *ngFor="let item of document.fields | keyvalue">
+              <div class="table-cell key-column"><strong>{{ item.key }}</strong></div>
+              <div class="table-cell separator-column"><strong>:</strong></div>
+              <div class="table-cell value-column"><strong>{{ item.value }}</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Document Image -->
+        <div class="div3-details" *ngIf="document.images && document.images.length>0 && document.images[0].imageUrl!='' && (menuType==2 || menuType==3)">
+          <div class="div3-tab">
+            <h3 class="card-title" >Images</h3>
+          </div>
+              <div class="div3-details div3-border">
+                <div class="image-gallery">
+                  <div class="image-gallery-container  scrollx">
+                    <app-image-tile *ngFor="let image of document.images" [imageSrc]="image.imageUrl"></app-image-tile>
+                  </div>
+                </div>
+              </div>
+        </div>
+      </div>
+
+
+      <!-- Update & Delete Button -->
+      <div class="card-actions div3-tab div-center-content" *ngIf="menuType==2">
+          <button (click)="delete(document.id)" class="red-button"><i class="fa fa-trash"></i></button>
+          <button (click)="editDocument(document)" class="blue-button"><i class="fa fa-edit"></i></button>
+      </div>
+
+
+      <!-- Update Form -->
+      <div>
+        <div class="right-pane" *ngIf="showFormUpdate && document.id==(documentToEdit!=null?documentToEdit.id:false)">
+          <!-- Update Document Form -->
+          <form [formGroup]="documentForm" (ngSubmit)="onSubmit()">
+            <div class="card-actions">
+              <label for="documentType">Document Name</label>
+              <input id="documentType" type="text" formControlName="documentType" required>
+            </div>
+            <div class="card-actions">
+              <label for="documentType">Document Fields</label>
+              <div formArrayName="fields" class="table div3-details">
+                <div class="table-row" *ngFor="let field of fields.controls; let i = index" [formGroupName]="i" class="field-group">
+                  <div class="card-actions">
+                    <div class="table-cell key-column"><input type="text" formControlName="key" placeholder="Key" required></div>
+                    <div class="table-cell separator-column">:</div>
+                    <div class="table-cell value-column"><input type="text" formControlName="value" placeholder="Value" required></div>
+                    <!-- Delete Field -->
+                    <button type="button" (click)="removeField(i)" class="red-button"><i class="fa fa-trash"></i></button>
+                  </div>
+                </div>
+                <!-- Add Field -->
+                <div class="card-actions">
+                      <button type="button" class="green-button" (click)="addField()"><i class="fa fa-add"></i></button>
+                </div>
+              </div>
+            </div>
+  
+            <!-- Update Document Image -->
+            <div class="card-actions">
+              <label for="images">Image URLs (comma separated)</label>
+              <input id="images" type="text" formControlName="images" required>
+            </div>
+            <div class="card-actions div-center-content">
+              <button type="submit" class="green-button">Submit</button>
+              <button type="button" (click)="toggleForm(2)" class="blue-button">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

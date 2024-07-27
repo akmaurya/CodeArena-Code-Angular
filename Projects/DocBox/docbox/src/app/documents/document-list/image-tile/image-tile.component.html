@@ -1,5 +1,12 @@
 <div class="image-name">
-        <h4>{{this.imageSrc.substring(this.imageSrc.lastIndexOf("/")+1, this.imageSrc.length-4)}}</h4>
+        <!-- <h4>{{ getFormattedFileName(imageName?.name) }}</h4> -->
+        <h4>
+                {{imageName?.name==null || imageName?.name==''
+                ?imageSrc.substring(imageSrc.lastIndexOf("/")+1, imageSrc.length-4)
+                :getFormattedFileName(imageName?.name)}}
+        </h4>
+        <!-- <h4>{{imageName!=null && imageName.name!=null? imageName.name.substring(0, imageName.name.length-4):''}}</h4> -->
+        <a [href]="imageSrc" target="_blank"><img class="image" [src]="imageSrc" [alt]="imageSrc"></a>
+        <!-- ViewDataStart--{{imageSrc}}--DataEnd -->
 </div>
-<a [href]="imageSrc" target="_blank"><img class="image" [src]="imageSrc" [alt]="imageSrc"></a>
      

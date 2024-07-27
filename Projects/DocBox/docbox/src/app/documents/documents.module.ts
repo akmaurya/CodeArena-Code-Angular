@@ -12,13 +12,17 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { ImageTileComponent } from './document-list/image-tile/image-tile.component';
+import { FileUploadComponent } from './document-list/file-upload/file-upload.component';
+import { ConfirmSubmitComponent } from './confirm-submit/confirm-submit.component';
 
 
 @NgModule({
   declarations: [
     DocumentListComponent,
     ConfirmDialogComponent,
-    ImageTileComponent
+    ImageTileComponent,
+    FileUploadComponent,
+    ConfirmSubmitComponent
   ],
   imports: [
     CommonModule,
