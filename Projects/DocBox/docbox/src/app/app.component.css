@@ -135,3 +135,20 @@ nav {
         padding: 10px;
     }
 }
+
+
+/* Message styling */
+.message-success {
+    margin-bottom: 16px;
+    color: #008255;
+    font-weight: bold;
+    padding-top: 30px;
+  }
+  
+  /* Message styling */
+  .message-failed {
+    margin-bottom: 16px;
+    color: #de1212;
+    font-weight: bold;
+    padding-top: 30px;
+  }

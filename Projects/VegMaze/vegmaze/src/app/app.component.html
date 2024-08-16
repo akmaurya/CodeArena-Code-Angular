@@ -1,0 +1,13 @@
+<!-- <app-endpoint></app-endpoint> -->
+
+<mat-toolbar color="primary">
+  <span>VegMaze</span>
+  <span class="spacer"></span>
+  <div>
+    <button mat-button routerLink="/vegetable">Vegetables</button>
+    <button mat-button routerLink="/cart">Cart</button>
+    <button mat-button (click)="logout()">Logout</button>
+    <button mat-button (click)="endPoints()">End Points</button>
+  </div>
+</mat-toolbar>
+<router-outlet></router-outlet>

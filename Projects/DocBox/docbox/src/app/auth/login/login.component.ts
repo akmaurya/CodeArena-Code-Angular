@@ -21,6 +21,7 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) { }
 
   login() {
+    localStorage
     this.authService.login(this.loginRequest).subscribe(
       (response: any) => {
         localStorage.setItem('token', response.token);
@@ -41,6 +42,8 @@ export class LoginComponent {
       error => {
         console.error('Login error', error);
         this.loginError = 'Invalid email or password';
+        this.userDetails = new UserDetails();
+        this.authService.logout();
       }
     );
   }

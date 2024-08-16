@@ -3,6 +3,7 @@ export class UserDetails {
   username: string | undefined;
   password: string | undefined;
   email: string | undefined;
+  profilePhoto: string | undefined;
   status: boolean | undefined;
   enabled: boolean | undefined;
   authorities: any|undefined;

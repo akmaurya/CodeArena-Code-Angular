@@ -1,0 +1,14 @@
+<p>order works!</p>
+<!-- src/app/order/order.component.html -->
+
+<div *ngIf="paymentOptions.length > 0">
+  <form>
+    <label for="paymentMethod">Select Payment Method:</label>
+    <select id="paymentMethod" name="paymentMethod">
+      <option *ngFor="let option of paymentOptions" [value]="option.name">
+        {{ option.name }}
+      </option>
+    </select>
+    <button type="submit">Place Order</button>
+  </form>
+</div>

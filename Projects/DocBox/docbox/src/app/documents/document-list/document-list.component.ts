@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { DocumentService } from '../document.service';
 import { AuthService } from '../../auth/auth.service';
 import { UserDocument } from '../userDocument.model';
@@ -10,6 +10,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { Console } from 'console';
 import { DocumentImage } from '../documentImage';
 import { ConfirmSubmitComponent } from '../confirm-submit/confirm-submit.component';
+import { StatusService } from '../../status.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-document-list',
@@ -31,14 +33,17 @@ export class DocumentListComponent implements OnInit {
   documentDeletedMessage: string = '';
   addDocumentAdded: string = '';
   addDocumentUpdated: string = '';
-  
+
   editMode: boolean = false;
   documentToEdit: UserDocument | null = null;
 
   menuType: number = 2;
   submitted = false;
-  
-  constructor(public dialog: MatDialog, private fb: FormBuilder, private documentService: DocumentService, private authService: AuthService, private router: Router) { 
+
+  @Output() statusChange = new EventEmitter<{ type: string, message: string }>();
+  @ViewChild('profilePhoto') profilePhoto?: ElementRef;
+
+  constructor(private http: HttpClient, private statusService: StatusService, public dialog: MatDialog, private fb: FormBuilder, private documentService: DocumentService, private authService: AuthService, private router: Router) {
     this.documentForm = this.fb.group({
       documentType: ['', Validators.required],
       fields: this.fb.array([]),
@@ -46,7 +51,44 @@ export class DocumentListComponent implements OnInit {
       expanded: false
     });
   }
-  
+
+
+  onFileChange(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      this.uploadImage(file);
+    }
+  }
+
+  uploadImage(file: File): void {
+    const formData = new FormData();
+    console.log("ProfilePhoto------");
+    console.log(file);
+    this.userDetails = JSON.parse(localStorage.getItem('userData') || '{}');
+    if (this.userDetails && this.userDetails.id) {
+      formData.append('userName', this.userDetails.username!.toString());
+      formData.append('file', file);
+    }
+
+    this.authService.uploadProfilePhoto(formData).subscribe(
+      (response) => {
+        // Handle success
+        localStorage.setItem('userData', JSON.stringify(response));
+        alert(response);
+        console.log('Image uploaded successfully');
+        console.log(response);
+        this.statusService.setStatus('success', 'Profile picture updated successfully. Will show in next login.');
+        this.loadDocumentsOld();
+      },
+      (error) => {
+        // Handle error
+        console.error('Error uploading image', error);
+      }
+    );
+  }
+
+
+
   ngOnInit(): void {
     this.userDetails = JSON.parse(localStorage.getItem('userData') || '{}');
     if (this.userDetails && this.userDetails.id) {
@@ -57,16 +99,36 @@ export class DocumentListComponent implements OnInit {
   }
 
   loadDocumentsOld(): void {
+    // if (this.userDetails && this.userDetails.username) {
+    //   this.authService.getUserDetails(this.userDetails.username).subscribe(
+    //     (response: any) => {
+    //       this.userDetails = response;
+    //       console.log("Profile response on loading document-----------");
+    //       console.log(response);
+    //       localStorage.setItem('userData', JSON.stringify(response));
+    //     },
+    //     error => {
+    //       console.error('User error', error);
+    //       this.userDetails = new UserDetails();
+    //       this.authService.logout();
+    //     }
+    //   );
+    // }
     if (this.userDetails && this.userDetails.id) {
       this.documentService.getDocuments(this.userDetails.id).subscribe(
         data => {
+          this.resetForm();
+          this.documents = [];
           this.documents = data;
           console.log("New Doc Details");
           console.log(data);
         },
-        error => console.error('Error fetching documents', error)
+        error => {console.error('Error fetching documents: Session Expired. Please Login again', error);
+          this.statusService.setStatus('error', 'Error fetching documents: Session Expired. Please Login again');
+          this.router.navigate(['/login']);
+        }
       );
-      
+
     } else {
       this.router.navigate(['/login']);
     }
@@ -84,7 +146,7 @@ export class DocumentListComponent implements OnInit {
     const byteArray = new Uint8Array(byteNumbers);
     return new Blob([byteArray], { type: contentType });
   }
-  
+
   getImageSrc(image: { imageUrl: string | null; data: string | null }): string {
     if (image.imageUrl) {
       return image.imageUrl;
@@ -94,7 +156,7 @@ export class DocumentListComponent implements OnInit {
       return '';
     }
   }
-  getImageSrcUpdate(image:string): string {
+  getImageSrcUpdate(image: string): string {
     if (image) {
       return `data:image/jpeg;base64,${image}`;
     } else {
@@ -118,13 +180,6 @@ export class DocumentListComponent implements OnInit {
           }));
           console.log("New Doc Details");
           console.log(this.documents);
-
-          // const imageData = [
-          //   { data: new Blob(['imageData1'], { type: 'image/jpeg' }), name: 'image1.jpg' },
-          //   { data: new Blob(['imageData2'], { type: 'image/jpeg' }), name: 'image2.jpg' }
-          // ];
-      
-          // this.loadImages(this.documents);
         },
         error => console.error('Error fetching documents', error)
       );
@@ -161,14 +216,15 @@ export class DocumentListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result === true) { // Assuming the dialog returns `true` on confirmation
         this.saveUpdate();
-        this.resetForm();
+        // this.resetForm();
         // this.loadDocuments();
       }
     });
   }
-    
-    saveUpdate(): void {
+
+  saveUpdate(): void {
     this.submitted = true;
+    // alert("Submited-----"+this.documentForm.invalid);
     if (this.documentForm.invalid) {
       console.log('Form is invalid');
       return;
@@ -196,27 +252,31 @@ export class DocumentListComponent implements OnInit {
       newDocument.imagesFile.forEach((imgFile, index) => {
         formData.append(`files`, imgFile.imageFileUrl);
       });
-    } 
-    
-    
+    }
+
+
     if (this.editMode) {
 
       if (this.existingImages) {
         const imageIds: number[] = this.images.value.map((image: DocumentImage) => image.id).filter((id: number | undefined): id is number => id !== undefined);
         const idsString = imageIds.join(',');
         formData.append('ids', idsString);
-      } 
-      
+      }
+
       console.log("Just Before Update-------");
       console.log(newDocument);
-      this.documentService.updateDocument(formData, newDocument.id!=null?newDocument.id:-1).subscribe(
+      this.documentService.updateDocument(formData, newDocument.id != null ? newDocument.id : -1).subscribe(
         (data: UserDocument) => {
           const index = this.documents.findIndex(doc => doc.id === data.id);
           if (index !== -1) {
             this.documents[index] = data;
           }
           this.resetForm();
-          this.addDocumentUpdated = 'Document updated successfully!';
+          // this.addDocumentUpdated = 'Document updated successfully!';
+          this.statusService.setStatus('success', 'Document updated successfully!');
+          setTimeout(() => {
+            this.loadDocumentsOld();
+          }, 3000); // 3 seconds delay
         },
         error => console.error('Error updating document', error)
       );
@@ -225,45 +285,56 @@ export class DocumentListComponent implements OnInit {
         (data: UserDocument) => {
           this.documents.push(data);
           this.resetForm();
-          this.addDocumentAdded = 'Document added successfully!';
+          // this.addDocumentAdded = 'Document added successfully!';
+          this.statusService.setStatus('success', 'Document added successfully!');
+          setTimeout(() => {
+            this.loadDocumentsOld();
+          }, 1000); // 3 seconds delay
         },
         error => console.error('Error adding document', error)
       );
     }
+    // alert("addDocumentAdded"+this.addDocumentAdded);
+    // alert("addDocumentUpdated"+this.addDocumentUpdated);
     // this.loadDocuments();
-    this.loadDocumentsOld();
+    // if(this.addDocumentAdded!='' || this.addDocumentUpdated!=''){
+    //   alert("addDocumentAdded"+this.addDocumentAdded);
+    //   alert("addDocumentUpdated"+this.addDocumentUpdated);
+
+    //   // this.loadDocumentsOld();
+    // }
     setTimeout(() => this.addDocumentAdded = '', 5000); // Clear the message after 5 seconds
     setTimeout(() => this.addDocumentUpdated = '', 5000); // Clear the message after 5 seconds
   }
 
-  toggleForm(type:number): void {
-    if(type==1){// for Add Document
+  toggleForm(type: number): void {
+    if (type == 1) {// for Add Document
       this.documentForm.reset();
       this.fields.clear();
-      this.uploadingFileList=[];
+      this.uploadingFileList = [];
       this.editMode = false;
       this.documentToEdit = null;
       this.showFormAdd = !this.showFormAdd;
       this.showFormUpdate = false;
-      this.submitted=false;
-    }
-    else if(type==2) //for update Document
-      this.showFormUpdate = !this.showFormUpdate;
       this.submitted = false;
+    }
+    else if (type == 2) //for update Document
+      this.showFormUpdate = !this.showFormUpdate;
+    this.submitted = false;
   }
 
   editDocument(document: UserDocument): void {
     this.editMode = true;
     this.documentToEdit = document;
-    
-    this.existingImages.forEach((image: File)=>{this.uploadingFileList.push(image)});
+
+    this.existingImages.forEach((image: File) => { this.uploadingFileList.push(image) });
     console.log("Document to Edit Values");
     console.log(this.documentToEdit);
 
     this.documentForm.patchValue({
       documentType: document.documentType
     });
-    
+
     this.fields.clear();
     Object.keys(document.fields ?? {}).forEach(key => {
       this.fields.push(this.fb.group({
@@ -271,7 +342,7 @@ export class DocumentListComponent implements OnInit {
         value: [document.fields?.[key] ?? '', Validators.required]
       }));
     });
-    
+
     this.images.clear();
     document.images?.forEach(image => {
       this.images.push(this.fb.group({
@@ -297,7 +368,8 @@ export class DocumentListComponent implements OnInit {
             console.log("Response message of delete document");
             console.log(response);
             this.documents = this.documents.filter(doc => doc.id !== id);
-            this.documentDeletedMessage = response;
+            // this.documentDeletedMessage = response;
+            this.statusService.setStatus('success', 'Document deleted successfully!');
             this.loadDocumentsOld(); // Refresh the document list
           },
           error => console.error('Error deleting document', error)
@@ -317,7 +389,7 @@ export class DocumentListComponent implements OnInit {
     this.uploadingFileList = [];
   }
 
-  changeMenue(menuType:number){
+  changeMenue(menuType: number) {
     this.menuType = menuType;
   }
 
@@ -329,7 +401,7 @@ export class DocumentListComponent implements OnInit {
 
 
 
-  
+
   // updateUploadingFileList(): void {
   //   this.uploadingFileList = this.images.value.map((image: DocumentImage) => ({
   //     name: image.name,
@@ -348,7 +420,7 @@ export class DocumentListComponent implements OnInit {
   get images(): FormArray {
     return this.documentForm.get('images') as FormArray;
   }
-  
+
   addImage(): void {
     this.images.push(this.fb.group({
       id: [null],
@@ -357,18 +429,32 @@ export class DocumentListComponent implements OnInit {
       data: ['']
     }));
   }
-  
+
   removeImage(index: number): void {
     // Open the confirmation dialog
-  const dialogRef = this.dialog.open(ConfirmDialogComponent);
+    const dialogRef = this.dialog.open(ConfirmDialogComponent);
 
-  // Handle the result of the dialog
-  dialogRef.afterClosed().subscribe(result => {
-    if (result === true) { // Assuming the dialog returns `true` on confirmation
-      // Remove the image at the specified index
-      this.images.removeAt(index);
-    }
-  });
+    // Handle the result of the dialog
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) { // Assuming the dialog returns `true` on confirmation
+        // Remove the image at the specified index
+        this.images.removeAt(index);
+      }
+    });
     // this.images.removeAt(index);
+  }
+
+
+  @ViewChild("addInput", { static: false }) myInput!: ElementRef;
+
+  setAddFocus() {
+    this.myInput.nativeElement.focus();
+  }
+
+
+  @ViewChild("updateInput", { static: false }) updateInput!: ElementRef;
+
+  setUpdateFocus() {
+    this.updateInput.nativeElement.focus();
   }
 }

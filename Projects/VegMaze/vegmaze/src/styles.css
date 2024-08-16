@@ -1,0 +1,48 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+
+
+
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  mat-card {
+    margin: 16px;
+  }
+  
+  mat-form-field {
+    width: 100%;
+  }
+  
+  .vegetable-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .vegetable-list mat-card {
+    width: 200px;
+    margin: 10px;
+  }
+  
+  table {
+    width: 100%;
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align: left;
+  }
+  
+  button {
+    margin-top: 16px;
+  }
+  

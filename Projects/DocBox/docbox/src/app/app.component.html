@@ -1,5 +1,17 @@
 <div class="main-container">
   <div class="content">
+    <div style="text-align: right;">
+      <!-- <div class="message-success" *ngIf="addDocumentAdded">{{ addDocumentAdded }}</div>
+      <div class="message-success" *ngIf="addDocumentUpdated">{{ addDocumentUpdated }}</div>
+      <div class="message-failed" *ngIf="documentDeletedMessage">{{ documentDeletedMessage }}</div> -->
+      <!-- <document-list (statusChange)="handleStatusChange($event)"></document-list> -->
+
+      <div class="message-success" *ngIf="addDocumentAdded">{{ addDocumentAdded }}</div>
+      <div class="message-success" *ngIf="addDocumentUpdated">{{ addDocumentUpdated }}</div>
+      <div class="message-failed" *ngIf="documentDeletedMessage">{{ documentDeletedMessage }}</div>
+      <div class="message-success" *ngIf="profilePictureMessage">{{ profilePictureMessage }}</div>
+
+    </div>
   </div>
   <div class="auth-container">
     <nav>
@@ -10,6 +22,7 @@
         <li *ngIf="authService.isLoggedIn()"><a (click)="authService.logout()">Logout</a></li>
       </ul>
     </nav>
+    
   </div>
 </div>
 <hr/>

@@ -1,0 +1,48 @@
+<!-- <div *ngIf="endpointEntries.length > 0">
+    <div *ngFor="let entry of endpointEntries">
+      <h2>{{ entry[0] }}</h2>
+      <ul>
+        <li *ngFor="let subEntry of objectEntries(entry[1])">
+          <strong>{{ subEntry[0] }}</strong>
+          <ul>
+            <li *ngFor="let param of subEntry[1]">
+              {{ param.name }} ({{ param.type }})
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+</div> -->
+
+<div *ngIf="endpointEntries.length > 0">
+<!-- Loop through each class entry -->
+<ng-container *ngFor="let entry of endpointEntries; let i = index">
+    <h2>[{{i+1}}] {{ entry[0].substring(entry[0].lastIndexOf('.')+1, entry[0].length) }}</h2> <!-- Display the class name as a heading -->
+    <table>
+    <thead>
+        <tr>
+        <th>Endpoint</th>
+        <th>Parameters</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Loop through each endpoint in the current class -->
+        <ng-container *ngFor="let subEntry of objectEntries(entry[1])">
+        <tr>
+            <td>{{ subEntry[0] }}</td>
+            <td>
+            <ul>
+                <!-- List all parameters for the current endpoint -->
+                <li *ngFor="let param of subEntry[1]">
+                {{ param.name }} ({{ param.type }})
+                </li>
+            </ul>
+            </td>
+        </tr>
+        </ng-container>
+    </tbody>
+    </table>
+    <br /> <!-- Add space between tables -->
+</ng-container>
+</div>
+

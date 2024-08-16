@@ -1,0 +1,43 @@
+<p>vegetable-detail works!</p>
+<!-- <mat-card>
+    <mat-card-header>
+      <img mat-card-avatar [src]="vegetable.image" alt="{{ vegetable.name }}">
+      <mat-card-title>{{ vegetable.name }}</mat-card-title>
+      <mat-card-subtitle>{{ vegetable.price | currency }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{ vegetable.description }}</p>
+      <button mat-raised-button color="primary" (click)="addToCart()">Add to Cart</button>
+    </mat-card-content>
+  </mat-card> -->
+  
+  <!-- <div *ngIf="vegetable">
+    <h1>{{ vegetable.name }}</h1>
+    <p>{{ vegetable.description }}</p>
+    <p>Price: {{ vegetable.price | currency }}</p>
+    <p>Stock Quantity: {{ vegetable.stockQuantity }}</p>
+    <p>Category: {{ vegetable.category.name }}</p>
+    <p>Created At: {{ vegetable.createdAt | date }}</p>
+    <p>Updated At: {{ vegetable.updatedAt | date }}</p>
+    <button (click)="addToCart()">Add to Cart</button>
+  </div> -->
+
+  <div *ngIf="vegetable" class="vegetable-detail-container">
+    <div class="vegetable-image">
+      <img [src]="vegetable.imageUrl" alt="{{ vegetable.name }}" />
+    </div>
+    <div class="vegetable-info">
+      <h1 class="vegetable-title">{{ vegetable.name }}</h1>
+      <p class="vegetable-description">{{ vegetable.description }}</p>
+      <div class="vegetable-details">
+        <p class="vegetable-price">Price: {{ vegetable.price | currency }}</p>
+        <p class="vegetable-stock">Stock Quantity: {{ vegetable.stockQuantity }}</p>
+        <p class="vegetable-category">Category: {{ vegetable.category.name }}</p>
+        <p class="vegetable-created">Created At: {{ vegetable.createdAt | date }}</p>
+        <p class="vegetable-updated">Updated At: {{ vegetable.updatedAt | date }}</p>
+      </div>
+      <button class="add-to-cart-button" (click)="addToCart()">Add to Cart</button>
+    </div>
+  </div>
+  
+  

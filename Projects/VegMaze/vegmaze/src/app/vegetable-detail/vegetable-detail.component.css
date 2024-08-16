@@ -1,0 +1,75 @@
+/* Container for the vegetable detail page */
+.vegetable-detail-container {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+  }
+  
+  /* Image section */
+  .vegetable-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .vegetable-image img {
+    max-width: 100%;
+    max-height: 500px;
+    border-radius: 8px;
+  }
+  
+  /* Information section */
+  .vegetable-info {
+    flex: 2;
+    padding: 20px;
+  }
+  
+  .vegetable-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .vegetable-description {
+    font-size: 16px;
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+  
+  .vegetable-details {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .vegetable-price {
+    color: #e60012;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .vegetable-stock,
+  .vegetable-category,
+  .vegetable-created,
+  .vegetable-updated {
+    margin-bottom: 10px;
+  }
+  
+  .add-to-cart-button {
+    background-color: #ff5722;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-to-cart-button:hover {
+    background-color: #e64a19;
+  }
+  

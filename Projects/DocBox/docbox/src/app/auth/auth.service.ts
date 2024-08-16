@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UserDetails } from './userdetails.model';
 import { Router } from '@angular/router';
@@ -14,6 +14,7 @@ export class AuthService {
   private registerUrl = this.apiUrl+'/users/register';
   private loginUrl = this.apiUrl+'/users/login';
   private userDetails = this.apiUrl+'/users';
+  private updateProfilePhoto = this.apiUrl+'/users/uploadProfilePhoto';
   private loggedIn = false;
 
   constructor(private http: HttpClient, private router: Router) { }
@@ -25,6 +26,13 @@ export class AuthService {
   register(user: any) {
     return this.http.post<UserDetails>(`${this.registerUrl}`, user, { withCredentials: true});
   }
+
+  uploadProfilePhoto(profilePhoto: FormData): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+    return this.http.put(`${this.updateProfilePhoto}`, profilePhoto, { headers });
+  }
+
+
 
   getUserDetails(user: any) {
     // alert(`${this.userDetails}/${user.username}`);

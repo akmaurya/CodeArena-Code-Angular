@@ -1,0 +1,27 @@
+<p>vegetable-list works!</p>
+<!-- <div class="vegetable-list">
+    <mat-card *ngFor="let vegetable of vegetables" (click)="viewDetail(vegetable.id)">
+      <mat-card-header>
+        <img mat-card-avatar [src]="vegetable.image" alt="{{ vegetable.name }}">
+        <mat-card-title>{{ vegetable.name }}</mat-card-title>
+        <mat-card-subtitle>{{ vegetable.price | currency }}</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+  </div> -->
+  
+  <div *ngIf="vegetables.length > 0">
+    <div class="vegetable-grid">
+      <div *ngFor="let vegetable of vegetables" class="vegetable-tile">
+        <h2>{{ vegetable.name }}</h2>
+        <p>{{ vegetable.description }}</p>
+        <p>Price: {{ vegetable.price | currency }}</p>
+        <p>Stock Quantity: {{ vegetable.stockQuantity }}</p>
+        <p>Category: {{ vegetable.category.name }}</p>
+        <p>Created At: {{ vegetable.createdAt | date }}</p>
+        <p>Updated At: {{ vegetable.updatedAt | date }}</p>
+        <button (click)="viewDetail(vegetable.vegetableId)">View Details</button>
+      </div>
+    </div>
+  </div>
+  
+  
