@@ -1,0 +1,22 @@
+.table {
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table-row {
+    display: table-row;
+  }
+  
+  .table-cell {
+    display: table-cell;
+    padding: 8px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  .header {
+    background-color: #f4f4f4;
+    font-weight: bold;
+  }
+  

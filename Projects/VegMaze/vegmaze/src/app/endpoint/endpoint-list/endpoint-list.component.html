@@ -1,19 +1,3 @@
-<!-- <div *ngIf="endpointEntries.length > 0">
-    <div *ngFor="let entry of endpointEntries">
-      <h2>{{ entry[0] }}</h2>
-      <ul>
-        <li *ngFor="let subEntry of objectEntries(entry[1])">
-          <strong>{{ subEntry[0] }}</strong>
-          <ul>
-            <li *ngFor="let param of subEntry[1]">
-              {{ param.name }} ({{ param.type }})
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-</div> -->
-
 <div *ngIf="endpointEntries.length > 0">
 <!-- Loop through each class entry -->
 <ng-container *ngFor="let entry of endpointEntries; let i = index">

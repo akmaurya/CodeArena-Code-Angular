@@ -30,7 +30,6 @@ import { AuthService } from './services/auth.service';
 import { CartService } from './services/cart.service';
 import { OrderService } from './services/order.service';
 import { VegetableService } from './services/vegetable.service';
-// import { StorageService } from './services/local-storage.service';
 
 @NgModule({
   declarations: [

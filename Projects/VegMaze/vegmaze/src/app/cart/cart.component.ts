@@ -13,10 +13,21 @@ export class CartComponent {
   constructor(private cartService: CartService) {}
 
   ngOnInit() {
-    this.cartService.getCartItems().subscribe(data => {
+    this.loadCart();
+  }
+
+  loadCart() {
+    const user = JSON.parse(localStorage.getItem('userDetails') || '{}');
+    // Check if the user object is valid and contains a userId
+    if (user && user.userId) {
+    this.cartService.getCartItems(user.userId).subscribe(data => {
       this.cartItems = data;
-      this.totalAmount = this.cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+      this.totalAmount = this.cartItems[0].cart.cart_Gross_amount;
+
+      console.log("this.cartItems");
+      console.log(this.cartItems);
     });
+  }
   }
 
   placeOrder() {
@@ -27,3 +38,4 @@ export class CartComponent {
     });
   }
 }
+

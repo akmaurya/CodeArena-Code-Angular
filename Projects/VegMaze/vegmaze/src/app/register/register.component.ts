@@ -13,12 +13,23 @@ export class RegisterComponent {
   email: string | undefined;
   phoneNumber: string | undefined;
   address: any = {};
+  userType: string = 'users'; // Default to 'users'
 
   constructor(private authService: AuthService, private router: Router) {}
 
   register() {
-    // this.authService.register(this.username, this.password, this.email, this.phoneNumber, this.address).subscribe(
-    this.authService.register(this.username).subscribe(
+    // Create an object to hold the registration details
+    const registrationDetails = {
+      username: this.username,
+      password: this.password,
+      email: this.email,
+      phoneNumber: this.phoneNumber,
+      address: this.address,
+      userType: this.userType
+    };
+
+    // Call the AuthService to register the user with these details
+    this.authService.register(registrationDetails, this.userType).subscribe(
       () => this.router.navigate(['/login']),
       error => console.error('Registration failed', error)
     );

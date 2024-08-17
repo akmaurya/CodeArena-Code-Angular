@@ -14,12 +14,12 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'endPoints', component: EndpointComponent },
-  { path: 'vegetable', component: VegetableListComponent, canActivate: [AuthGuard] },
-  { path: 'vegetable/:id', component: VegetableDetailComponent, canActivate: [AuthGuard] },
-  { path: '', redirectTo: '/vegetable', pathMatch: 'full' },
+  { path: 'vegetable', component: VegetableListComponent },
+  { path: 'vegetable/:id', component: VegetableDetailComponent},
+  //{ path: '', redirectTo: '/vegetable', pathMatch: 'full' },
   { path: 'cart', component: CartComponent, canActivate: [AuthGuard] },
   { path: 'order', component: OrderComponent, canActivate: [AuthGuard] },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/vegetable', pathMatch: 'full' },
 ];
 
 @NgModule({

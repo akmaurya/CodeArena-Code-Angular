@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { CartItem } from '../models/cart-item.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,13 +16,12 @@ export class CartService {
     return this.http.post(`${this.apiUrl}/cart/additem`, item);
   }
 
-  addToCart(userId:number, vegetableid: number): Observable<any> {
-    alert('In Add to cart');
-    return this.http.post(`${this.cart}/additem/${userId}`, vegetableid); // Adjust the endpoint as needed
+  addToCart(userId:number, cartItem: CartItem): Observable<any> {
+    return this.http.post(`${this.cart}/additem/${userId}`, cartItem); // Adjust the endpoint as needed
   }
 
-  getCartItems(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/cart/getitems`);
+  getCartItems(userId:number): Observable<any> {
+    return this.http.get(`${this.cart}/getitems/${userId}`);
   }
 
   placeOrder(): Observable<any> {

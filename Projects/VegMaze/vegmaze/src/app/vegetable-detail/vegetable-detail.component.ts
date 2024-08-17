@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { VegetableService } from '../services/vegetable.service';
 import { CartService } from '../services/cart.service';
+import { CartItem } from '../models/cart-item.model';
 // import { StorageService } from '../services/local-storage.service';
 
 @Component({
@@ -12,6 +13,7 @@ import { CartService } from '../services/cart.service';
 export class VegetableDetailComponent {
   vegetable: any;
   user: any;
+  quantity:number = 1;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,23 +24,6 @@ export class VegetableDetailComponent {
   ) {}
 
   ngOnInit() {
-  //   const idString = this.route.snapshot.paramMap.get('id'); // id can be string or null
-
-  // if (idString !== null) {
-  //   const id = parseInt(idString, 10); // Convert the string to a number
-
-  //   if (!isNaN(id)) {
-  //     this.vegetableService.getVegetable(id).subscribe(data => {
-  //       this.vegetable = data;
-  //     });
-  //   } else {
-  //     // Handle the case where idString is not a valid number
-  //     console.error('Invalid ID format:', idString);
-  //   }
-  // } else {
-  //   // Handle the case where idString is null
-  //   console.error('ID parameter is missing');
-  // }
   this.loadItemDetails();
   }
 
@@ -59,16 +44,26 @@ export class VegetableDetailComponent {
   }
 
 
-  addToCart() {
+  addToCart(quantity:number) {
 
     // Retrieve the user details from local storage
     const user = JSON.parse(localStorage.getItem('userDetails') || '{}');
-    alert('user---'+user);
 
     // Check if the user object is valid and contains a userId
     if (user && user.userId) {
+      // Create a CartItem object
+      const cartItem: CartItem = {
+        cartItemId: 0, // or leave undefined if it's auto-generated
+        cart: { cartId: user.userId }, // Assuming cartId is same as userId; adjust if necessary
+        vegetable: this.vegetable,
+        quantity: quantity, // Set the desired quantity
+        cartItemAmount: this.vegetable.price, // Assuming quantity is 1, otherwise multiply quantity by price
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      };
+
       // Call the addToCart method in the CartService
-      this.cartService.addToCart(user.userId, this.vegetable.vegetableId).subscribe(
+      this.cartService.addToCart(user.userId, cartItem).subscribe(
         () => {
           // Handle successful addition to cart
           alert('Item added to cart');

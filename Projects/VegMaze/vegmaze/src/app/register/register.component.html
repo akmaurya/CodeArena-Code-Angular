@@ -1,15 +1,36 @@
-<p>register works!</p>
-<form (ngSubmit)="register()">
-    <mat-form-field>
-      <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput placeholder="Password" [(ngModel)]="password" name="password" type="password" required>
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput placeholder="Email" [(ngModel)]="email" name="email" required>
-    </mat-form-field>
-    <button mat-raised-button color="primary" type="submit">Register</button>
-    <a routerLink="/login">Login</a>
-  </form>
-  
+<div class="register-container">
+  <div class="register-card">
+    <p>Register works!</p>
+    <form (ngSubmit)="register()">
+      <mat-form-field appearance="fill">
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
+      </mat-form-field>
+      
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="Password" [(ngModel)]="password" name="password" type="password" required>
+      </mat-form-field>
+      
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Email" [(ngModel)]="email" name="email" required>
+      </mat-form-field>
+
+      <div class="user-type-group">
+        <!-- <label>User Type:</label> -->
+        <div class="radio-option">
+          <label for="user">User</label>
+          <input type="radio" id="user" [(ngModel)]="userType" name="userType" value="users" required />
+        </div>
+        <div class="radio-option">
+          <label for="admin">Admin</label>
+          <input type="radio" id="admin" [(ngModel)]="userType" name="userType" value="admin" required />
+        </div>
+      </div>
+      
+      <button mat-raised-button color="primary" type="submit" class="register-button">Register</button>
+      <a routerLink="/login">Login</a>
+    </form>
+  </div>
+</div>

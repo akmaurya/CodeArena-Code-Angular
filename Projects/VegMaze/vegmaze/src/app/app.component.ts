@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from './services/auth.service';
 import { Router } from '@angular/router';
-// import { StorageService } from './services/local-storage.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +10,7 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'vegmaze';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(public authService: AuthService, private router: Router) {}
 
   logout() {
     this.authService.logout(); // Call the logout method from AuthService

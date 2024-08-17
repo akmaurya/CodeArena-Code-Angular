@@ -1,0 +1,56 @@
+/* Center the register form on the page */
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+  }
+  
+  /* Style the register card */
+  .register-card {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  /* Align radio buttons side by side */
+  .user-type-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  
+  /* Style individual radio options */
+  .radio-option {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Optional: Adjust label spacing */
+  .radio-option label {
+    margin-right: 0.5rem;
+  }
+  
+  /* Style the register button */
+  .register-button {
+    background-color: #4caf50;
+    color: white;
+    width: 100%;
+    margin-top: 1rem;
+  }
+  
+  .register-button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .register-card {
+      width: 90%;
+    }
+  }
+  

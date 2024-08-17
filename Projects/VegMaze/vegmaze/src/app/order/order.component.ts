@@ -25,10 +25,15 @@ export class OrderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.cartService.getCartItems().subscribe((data: any) => {
+    const user = JSON.parse(localStorage.getItem('userDetails') || '{}');
+    alert('User: ' + JSON.stringify(user));
+    // Check if the user object is valid and contains a userId
+    if (user && user.userId) {
+    this.cartService.getCartItems(user.userId).subscribe((data: any) => {
       this.cartItems = data.items;
       this.totalAmount = data.totalAmount;
     });
+  }
   }
 
   placeOrder(): void {

@@ -11,10 +11,6 @@ export class VegetableService {
 
   constructor(private http: HttpClient) { }
 
-  // getVegetables(): Observable<any> {
-  //   return this.http.get(`${this.apiUrl}/vegetables`);
-  // }
-
   getVegetable(id: number): Observable<any> {
     return this.http.get(`${this.apiUrl}/getvegetable/${id}`);
   }
